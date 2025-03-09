@@ -38,6 +38,10 @@
       trash = "conceal";
       rm = "cnc";
       
+      #formated date
+      date-s1 = "date '+%Y/%m/%d %H:%M:%S'";
+      date-s2 = "date +%Y%m%d";
+      
       #mysql server
       mysql-server-start = "mysqld --datadir=$HOME/Programs/mysql/data --socket=$HOME/Programs/mysql/run/mysqld.sock --bind-address=127.0.0.1 &";
       mysql-server-stop = "mysqladmin -u root --socket=$HOME/Programs/mysql/run/mysqld.sock shutdown";
@@ -97,10 +101,10 @@
         clear;
         lolcat ~/Public/welcome.txt -a -d 1;
         mkdirT() {
-          mkdir "$(date +%y%m%d)_$1"
+          mkdir "$(date-s2)_$1"
         }
         touchT() {
-          touch "$(date +%y%m%d)_$1"
+          touch "$(date-s2)_$1"
         }
       '';
       history.size = 10000;
