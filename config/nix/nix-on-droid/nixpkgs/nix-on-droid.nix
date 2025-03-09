@@ -61,5 +61,5 @@
   };
   
   user.shell = "${pkgs.zsh}/bin/zsh";
-  terminal.font = "/data/data/com.termux.nix/files/home/.local/fonts/JetBrainsMonoNerdFont-Regular.ttf";
+  terminal.font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFont-Regular.ttf";
 }

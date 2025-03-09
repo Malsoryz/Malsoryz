@@ -20,6 +20,9 @@
       fortune
       file
       
+      #fonts
+      nerd-fonts.jetbrains-mono
+      
       #programing language
       php84
       mysql84
@@ -39,8 +42,10 @@
       rm = "cnc";
       
       #formated date
-      date-s1 = "date '+%Y/%m/%d %H:%M:%S'";
-      date-s2 = "date +%Y%m%d";
+      date = "TZ=Asia/Makassar date";
+      date-ymd = "date +%F";
+      date-hour = "date +%T";
+      date-yh = "date '+%F %T'";
       
       #mysql server
       mysql-server-start = "mysqld --datadir=$HOME/Programs/mysql/data --socket=$HOME/Programs/mysql/run/mysqld.sock --bind-address=127.0.0.1 &";
@@ -99,7 +104,11 @@
       syntaxHighlighting.enable = true;
       initExtra = ''
         clear;
-        lolcat ~/Public/welcome.txt -a -d 1;
+        (cat ~/.config/nixpkgs/welcome.txt; 
+        echo " GitHub : https://github.com/Malsoryz";
+        echo " Date   : $(date '+%A %d %B %Y %T')"; 
+        echo " Host   : $(whoami)@$(hostname)";
+        ) | lolcat -a -d 1;
         mkdirT() {
           mkdir "$(date-s2)_$1"
         }
