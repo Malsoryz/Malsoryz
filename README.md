@@ -20,6 +20,7 @@ Beginner programmer from Indonesia who is still in the learning stage.
 <a href="https://raw.githubusercontent.com/Malsoryz/Malsoryz/refs/heads/main/assets/png/ubuntu.png" target="_blank" style="display: inline-block;"><img src="https://raw.githubusercontent.com/Malsoryz/Malsoryz/refs/heads/main/assets/png/ubuntu.png" style="height: 40px; width: 40px; margin: 2px;" alt="ubuntu"/></a>
 <a href="https://raw.githubusercontent.com/Malsoryz/Malsoryz/refs/heads/main/assets/png/nixos.png" target="_blank" style="display: inline-block;"><img src="https://raw.githubusercontent.com/Malsoryz/Malsoryz/refs/heads/main/assets/png/nixos.png" style="height: 40px; width: 40px; margin: 2px;" alt="nixos"/></a></p>
 
+## My Stats
 ![Malsoryz's Stats](https://github-readme-stats.vercel.app/api?username=Malsoryz&theme=dark&show_icons=true&hide_border=true&count_private=false)
 ![Malsoryz's Streak](https://github-readme-streak-stats.herokuapp.com/?user=Malsoryz&theme=dark&hide_border=true)
 ![Malsoryz's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Malsoryz&theme=dark&show_icons=true&hide_border=true&layout=compact)
