@@ -3,6 +3,7 @@
   home = {
     sessionVariables = {
       PATH = "$HOME/.nix-profile/bin:/data/data/com.termux.nix/files/usr/bin:$HOME/.config/composer/vendor/bin";
+      MOTD = "$HOME/Public/git/Malsoryz/assets/motd/motd.sh";
     };
     # Read the changelog before changing this value
     stateVersion = "24.05";
@@ -42,7 +43,6 @@
       rm = "cnc";
       
       #formated date
-      date = "TZ=Asia/Makassar date";
       date-ymd = "date +%F";
       date-hour = "date +%T";
       date-yh = "date '+%F %T'";
@@ -104,17 +104,7 @@
       syntaxHighlighting.enable = true;
       initExtra = ''
         clear;
-        (cat ~/.config/nixpkgs/welcome.txt; 
-        echo " GitHub : https://github.com/Malsoryz";
-        echo " Date   : $(date '+%A %d %B %Y %T')"; 
-        echo " Host   : $(whoami)@$(hostname)";
-        ) | lolcat -a -d 1;
-        mkdirT() {
-          mkdir "$(date-s2)_$1"
-        }
-        touchT() {
-          touch "$(date-s2)_$1"
-        }
+        sh $MOTD;
       '';
       history.size = 10000;
     };

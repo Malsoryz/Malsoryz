@@ -1,11 +1,10 @@
 { config, lib, pkgs, ... }:
-
 {
   android-integration.termux-setup-storage.enable = true;
   environment = {
     etcBackupExtension = ".bak";
     motd = ''
-      GitHub: https://github.com/Malsoryz
+      Wait...
     '';
     packages = with pkgs; [
       #editor
@@ -62,4 +61,5 @@
   
   user.shell = "${pkgs.zsh}/bin/zsh";
   terminal.font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFont-Regular.ttf";
+  time.timeZone = "Asia/Makassar";
 }
