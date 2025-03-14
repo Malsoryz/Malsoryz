@@ -25,6 +25,7 @@
       fzf
       fastfetch
       fortune
+      unzip
 
       #fonts
       nerd-fonts.jetbrains-mono
@@ -35,9 +36,11 @@
       netbeans
       android-studio
 
+      # Grub Themes
+      catppuccin-grub
+
       # Programming
-      jdk_headless
-      jre_headless
+      openjdk
       php84
 
       # Package Manager
