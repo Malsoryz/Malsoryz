@@ -3,7 +3,20 @@
   home = {
     sessionVariables = {
       PATH = "$HOME/.nix-profile/bin:/data/data/com.termux.nix/files/usr/bin:$HOME/.config/composer/vendor/bin";
-      MOTD = "$HOME/Public/git/Malsoryz/assets/motd/motd.sh";
+      MOTD = "$HOME/.motd/motd.sh";
+    };
+    file = {
+      "git/README.md" = {
+        text = ''
+          # Git
+          ID: Di sinilah titik tempat kumpulan repositori git berada.
+          EN: This is the point where the collection of git repositories is located.
+        '';
+      };
+      ".motd/" = {
+        source = ~/git/Malsoryz/assets/motd;
+        recursive = true;
+      };
     };
     # Read the changelog before changing this value
     stateVersion = "24.05";
