@@ -26,6 +26,7 @@
       fastfetch
       fortune
       unzip
+      busybox
 
       #fonts
       nerd-fonts.jetbrains-mono
@@ -43,6 +44,10 @@
       openjdk
       php84
 
+      # Mesa
+      mesa-demos
+      steam-run
+
       # Package Manager
       php84Packages.composer
       nodejs_23
@@ -57,6 +62,9 @@
       # trash manager
       trash = "conceal";
       rm = "cnc";
+
+      # Minecraft
+      tlauncher = "steam-run java -Dsun.java2d.opengl=true -jar ~/Downloads/TLauncher.jar";
     };
     file = {
       "~/.local/share/fonts/jetbrains-mono".source = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono";
