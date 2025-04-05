@@ -1,0 +1,27 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#battery,
+#clock,
+#network {
+    margin: 0 10px 0 0;
+    padding: 0 4px;
+}
+
+#workspaces button {
+    color: #ffffff;
+}

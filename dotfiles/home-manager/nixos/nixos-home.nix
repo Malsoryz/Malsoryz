@@ -4,6 +4,10 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
+  imports = [
+    ./nixos-module.nix
+  ];
+
   nix = {
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
@@ -13,69 +17,101 @@
     username = "eternity";
     homeDirectory = "/home/eternity";
     stateVersion = "24.11"; # Please read the comment before changing.
-    packages = with pkgs; [
-      # Other Packages
-      openssh
-      lolcat
-      tree
-      mycli
-      curl
-      wget
-      conceal
-      fzf
-      fastfetch
-      fortune
-      unzip
-      busybox
+  };
 
-      #fonts
-      nerd-fonts.jetbrains-mono
+  home.packages = with pkgs; [
+    # imported script or package
+    (import ./../../scripts/motd.nix { inherit pkgs; })
 
-      # Desktop App
-      vscode
-      google-chrome
-      netbeans
-      android-studio
+    # Other Packages
+    openssh
+    lolcat
+    tree
+    mycli
+    curl
+    wget
+    conceal
+    fzf
+    fastfetch
+    fortune
+    unzip
+    busybox
 
-      # Grub Themes
-      catppuccin-grub
+    #fonts
+    nerd-fonts.jetbrains-mono
 
-      # Programming
-      openjdk
-      php84
+    # Programming
+    openjdk
+    php84
 
-      # Mesa
-      mesa-demos
-      steam-run
+    # Mesa
+#    mesa-demos
+#    steam-run
 
-      # Package Manager
-      php84Packages.composer
-      nodejs_23
-    ];
-    shellAliases = {
-      # list file or directory
-      ls = "eza";
-      la = "ls -a";
-      lh = "ls -lh";
-      lha = "ls -lha";
-      
-      # trash manager
-      trash = "conceal";
-      rm = "cnc";
+    # Package Manager
+    php84Packages.composer
+    nodejs_23
+  ];
+  
+  home.shellAliases = {
+    # list file or directory
+    ls = "eza";
+    la = "ls -a";
+    lh = "ls -lh";
+    lha = "ls -lha";
 
-      # Minecraft
-      tlauncher = "steam-run java -Dsun.java2d.opengl=true -jar ~/Downloads/TLauncher.jar";
-    };
-    file = {
-      "~/.local/share/fonts/jetbrains-mono".source = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono";
-    };
-    sessionVariables = {
-      MOTD = "$HOME/Public/git/Malsoryz/assets/motd/motd.sh";
+    imgview = "feh";
+    filemanager = "yazi";
+    
+    # trash manager
+    trash = "conceal";
+    rm = "cnc";
+
+    # Minecraft
+    tlauncher = "steam-run java -Dsun.java2d.opengl=true -jar ~/Downloads/TLauncher.jar";
+  };
+
+  home.file = {
+    "git/README.md" = {
+      text = ''
+        # Git
+        ID: Di sinilah titik tempat kumpulan repositori git berada.
+        EN: This is the point where the collection of git repositories is located.
+      '';
     };
   };
 
+  home.sessionVariables = {};
+
   programs = {
-    home-manager.enable = true;
+    kitty = {
+      enable = true;
+      font = {
+        name = "JetBrainsMono Nerd Font";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+      };
+      settings = {
+        background_opacity = 0.75;
+      };
+    };
+
+    yazi = {
+      enable = true;
+      package = pkgs.yazi;
+      enableZshIntegration = true;
+    };
+
+    feh = {
+      enable = true;
+      package = pkgs.feh;
+      themes = {
+        feh = [
+          "--image-bg"
+          "black"
+        ];
+      };
+    };
+
     git = {
       enable = true;
       userName  = "Malsoryz";
@@ -119,7 +155,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       initExtra = ''
-        sh $MOTD;
+        my-motd
       '';
       history.size = 10000;
     };
@@ -147,4 +183,5 @@
     };
   };
 
+  programs.home-manager.enable = true;
 }
