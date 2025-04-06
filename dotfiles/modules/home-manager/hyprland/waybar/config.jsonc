@@ -12,9 +12,9 @@
     "modules-center": [
     ],
     "modules-right": [
+        "network",
         "battery",
-        "clock",
-        "network"
+        "clock"
     ],
     "clock": {
         // "timezone": "America/New_York",
@@ -29,7 +29,7 @@
         },
         "format": "{capacity}% {icon}",
         "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% \uf0e7",
+        "format-charging": "{capacity}% {icon} \uf0e7",
         "format-plugged": "{capacity}% \uf0e7",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module

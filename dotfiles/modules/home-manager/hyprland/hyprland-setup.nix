@@ -3,18 +3,25 @@ let
   hyprpaperWallpaper = "~/git/Malsoryz/assets/background/cyberpunk-main-background.jpg";
 in
 {
+  imports = [
+    ./configs/hyprland.nix # Hyprland Config
+    ./configs/waybar.nix # WayBar Config
+  ];
+
   xdg.configFile = {
-    "hypr/hyprland.conf".source = ./hyprland/hyprland.conf;
-    "waybar/config.jsonc".source = ./waybar/config.jsonc;
+    # "waybar/config.jsonc".source = ./waybar/config.jsonc;
     "waybar/style.css".source = ./waybar/style.css;
   };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # cuman buat ngilangin pesan warning aja, jadi abaikan saja yang di bawah ini
-    extraConfig = builtins.readFile ./hyprland/hyprland.conf;
+    package = pkgs.hyprland;
   };
-  programs.waybar.enable = true;
+  programs.waybar = {
+    enable = true;
+    package = pkgs.waybar;
+  };
+
   programs.hyprlock = {
     enable = true;
     package = pkgs.hyprlock;

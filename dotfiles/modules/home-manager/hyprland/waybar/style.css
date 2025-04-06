@@ -15,11 +15,16 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 0 10px;
+}
+
+#network,
 #battery,
-#clock,
-#network {
-    margin: 0 10px 0 0;
-    padding: 0 4px;
+#clock {
+    padding: 8px;
 }
 
 #workspaces button {

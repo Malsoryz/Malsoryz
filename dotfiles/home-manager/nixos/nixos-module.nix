@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./../../modules/home-manager/hyprland-module.nix
+    ./../../modules/home-manager/hyprland/hyprland-setup.nix
   ];
 }
