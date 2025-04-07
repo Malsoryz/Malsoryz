@@ -2,10 +2,14 @@
 let
   terminal = "${pkgs.kitty}/bin/kitty";
   fileManager = "${pkgs.kitty}/bin/kitty -e ${pkgs.yazi}/bin/yazi";
-  menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
+  menu = "${pkgs.rofi-wayland}/bin/rofi -show drun -p \"App Menu\"";
   powermenu = (import ./../../../../scripts/power-menu.nix { inherit pkgs; });
   lockScreen = "${pkgs.hyprlock}/bin/hyprlock";
+  wakeUp = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+  screenShot = "${pkgs.grimblast}/bin/grimblast save output ~/Pictures/ScreenShot/$(${pkgs.coreutils}/bin/date \"+%H%M%S_%d%m%Y\").png";
+  # Key
   mainMod = "SUPER";
+  mod = "ALT";
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -123,9 +127,11 @@ in
       "${mainMod}, C, killactive,"
       "${mainMod}, Delete, exec, ${powermenu}/bin/power-menu"
       "${mainMod}, L, exec, ${lockScreen}"
+      "${mainMod}, Escape, exec, ${wakeUp}"
       "${mainMod}, E, exec, ${fileManager}"
+      "${mod}, P, exec, ${screenShot}"
+      "${mainMod}, S, exec, ${menu}"
       "${mainMod}, V, togglefloating,"
-      "${mainMod}, R, exec, ${menu}"
       "${mainMod}, P, pseudo," # dwindle
       "${mainMod}, J, togglesplit," # dwindle
 
@@ -166,6 +172,8 @@ in
       # Scroll through existing workspaces with mainMod + scroll
       "${mainMod}, mouse_down, workspace, e+1"
       "${mainMod}, mouse_up, workspace, e-1"
+      "${mod}, right, workspace, e+1"
+      "${mod}, left, workspace, e-1"
     ];
     # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm = [

@@ -6,12 +6,8 @@ in
   imports = [
     ./configs/hyprland.nix # Hyprland Config
     ./configs/waybar.nix # WayBar Config
+    ./configs/hyprlock.nix # Hyprlock Config
   ];
-
-  xdg.configFile = {
-    # "waybar/config.jsonc".source = ./waybar/config.jsonc;
-    "waybar/style.css".source = ./waybar/style.css;
-  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -20,41 +16,32 @@ in
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
+    style = builtins.readFile ./styles/waybar.css;
   };
-
   programs.hyprlock = {
     enable = true;
     package = pkgs.hyprlock;
+  };
+
+  services.hypridle = {
+    enable = true;
+    package = pkgs.hypridle;
     settings = {
-      background = {
-        path = "screenshot";
-        color = "rgba(20, 20, 20, 0.3)";   # semi transparan
-        blur_passes = 2;
-        blur_size = 7;
-        noise = 0.015;
-        contrast = 0.9;
-        brightness = 0.8;
-        vibrancy = 0.18;
-        vibrancy_darkness = 0.1;
+      general = {
+        lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
       };
-      input-field = {
-        halign = "center";
-        valign = "center";
-        placeholder_text = "Insert Password";
-        fail_text = "$FAIL ($ATTEMPTS)";
-        font_family = "JetBrainsMono Nerd Font";
-        dots_size = 0.1;
-        dots_spacing = 0.15;
-        dots_center = true;
-        dots_rounding = -1;
-        outline_thickness = 2;
-        outer_color = "rgba(54, 181, 206, 1)";
-        inner_color = "rgba(29, 63, 70, 0.25)";
-        font_color = "rgba(120, 233, 255, 1)";
-        check_color = "rgba(80, 158, 173, 1)";
-        fail_color = "rgba(199, 0, 20, 1)";
-        rounding = 10;
-      };
+      listener = [
+        {
+          timeout = 150;
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 0%";
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
+        }
+        {
+          timeout = 300;
+          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on && ${pkgs.hyprlock}/bin/hyprlock";
+        }
+      ];
     };
   };
   services.hyprpaper = {

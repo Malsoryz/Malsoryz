@@ -4,8 +4,9 @@ let
     Lock Screen
     Shutdown
     Reboot
+    Sleep
     Suspend
-    Close Hyprland
+    Login Screen
   '';
 in
 pkgs.writeShellScriptBin "power-menu" ''
@@ -25,11 +26,14 @@ pkgs.writeShellScriptBin "power-menu" ''
     "Reboot")
       systemctl reboot
       ;;
+    "Sleep")
+      hyprctl dispatch dpms off
+      ;;
     "Suspend")
       systemctl suspend
       hyprlock
       ;;
-    "Close Hyprland")
+    "Login Screen")
       hyprctl dispatch exit
       ;;
     *)

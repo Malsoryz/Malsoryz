@@ -36,6 +36,7 @@
     fortune
     unzip
     busybox
+    grimblast
 
     #fonts
     nerd-fonts.jetbrains-mono
