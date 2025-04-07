@@ -7,11 +7,13 @@
 
       modules-left = [
         "hyprland/workspaces"
+        "hyprland/window"
       ];
       modules-center = [
         "clock"
       ];
       modules-right = [
+        "backlight"
         "network"
         "battery"
       ];
@@ -53,6 +55,12 @@
         format-disconnected = "Disconnected ⚠";
         format-alt = "{ifname}: {ipaddr}/{cidr}";
       };
+      "backlight" = {
+        format = "{percent}% {icon}";
+        format-icons = [ "" ];
+      };
+
+      # Hyprland Modules
       "hyprland/workspaces" = {
         active-only = true;
         disable-scroll = true;
@@ -62,6 +70,9 @@
         persistent-workspaces = {
             "*" = 5;
         };
+      };
+      "hyprland/window" = {
+        format = "{initialTitle}";
       };
     };
   };

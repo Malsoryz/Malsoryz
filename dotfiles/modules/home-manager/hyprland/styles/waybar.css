@@ -21,6 +21,8 @@ window#waybar.hidden {
     margin: 0 10px;
 }
 
+#window,
+#backlight,
 #network,
 #battery,
 #clock {
