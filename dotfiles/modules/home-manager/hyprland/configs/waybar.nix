@@ -3,19 +3,19 @@
   programs.waybar.settings = {
     mainBar = {
       height = 30;
-      spacing = 4;
+      spacing = 5;
 
       modules-left = [
+        "custom/logo"
         "hyprland/workspaces"
         "hyprland/window"
       ];
-      modules-center = [
-        "clock"
-      ];
+      modules-center = [];
       modules-right = [
         "backlight"
         "network"
         "battery"
+        "clock"
       ];
 
       # Modules
@@ -73,6 +73,16 @@
       };
       "hyprland/window" = {
         format = "{initialTitle}";
+        rewrite = {
+          "New Tab - Google Chrome" = "Google Chrome";
+        };
+      };
+
+      # Custom Modules
+      "custom/logo" = {
+        format = "<big></big>";
+        on-click = "google-chrome-stable --new-window https://nixos.org";
+        tooltip-format = "NixOS";
       };
     };
   };

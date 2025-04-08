@@ -19,11 +19,13 @@ in
       "HYPRCURSOR_SIZE,24"
     ];
     exec-once = [
-      "${pkgs.waybar}/bin/waybar & ${pkgs.hyprpaper}/bin/hyprpaper"
+      "${pkgs.waybar}/bin/waybar"
+      "${pkgs.hyprpaper}/bin/hyprpaper"
+      "${pkgs.dunst}/bin/dunst"
     ];
     general = {
-      gaps_in = 5;
-      gaps_out = 10;
+      gaps_in = 2.5;
+      gaps_out = 5;
       border_size = 2;
       "col.active_border" = "rgba(36b5ceee) rgba(b118cdee) 45deg";
       "col.inactive_border" = "rgba(1d3f46aa)";
@@ -130,7 +132,7 @@ in
       "${mainMod}, Escape, exec, ${wakeUp}"
       "${mainMod}, E, exec, ${fileManager}"
       "${mod}, P, exec, ${screenShot}"
-      "${mainMod}, S, exec, ${menu}"
+      "${mainMod}, R, exec, ${menu}"
       "${mainMod}, V, togglefloating,"
       "${mainMod}, P, pseudo," # dwindle
       "${mainMod}, J, togglesplit," # dwindle

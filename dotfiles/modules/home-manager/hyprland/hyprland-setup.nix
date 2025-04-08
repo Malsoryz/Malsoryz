@@ -32,12 +32,12 @@ in
       };
       listener = [
         {
-          timeout = 150;
+          timeout = 300;
           on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 0%";
           on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
         }
         {
-          timeout = 300;
+          timeout = 600;
           on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
           on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on && ${pkgs.hyprlock}/bin/hyprlock";
         }
@@ -56,5 +56,8 @@ in
         "eDP-1,${hyprpaperWallpaper}"
       ];
     };
+  };
+  services.dunst = {
+    enable = true;
   };
 }

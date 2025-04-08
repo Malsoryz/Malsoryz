@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  motd = (import ./../../scripts/motd.nix { inherit pkgs; });
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -21,7 +23,6 @@
 
   home.packages = with pkgs; [
     # imported script or package
-    (import ./../../scripts/motd.nix { inherit pkgs; })
 
     # Other Packages
     openssh
@@ -45,6 +46,9 @@
     openjdk
     php84
 
+    netbeans
+    android-studio
+
     # Mesa
 #    mesa-demos
 #    steam-run
@@ -55,6 +59,8 @@
   ];
   
   home.shellAliases = {
+    hm-switch = "home-manager switch";
+
     # list file or directory
     ls = "eza";
     la = "ls -a";
@@ -95,6 +101,8 @@
         background_opacity = 0.75;
       };
     };
+
+    vscode.enable = true;
 
     yazi = {
       enable = true;
@@ -140,13 +148,15 @@
 
     ssh = {
       enable = true;
-      matchBlocks.github = {
-        host = "github.com";
-        user = "git";
-        forwardAgent = true;
-        identityFile = [
-          "~/.ssh/id_ed25519"
-        ];
+      matchBlocks = {
+        github = {
+          host = "github.com";
+          user = "git";
+          forwardAgent = true;
+          identityFile = [
+            "~/.ssh/id_ed25519"
+          ];
+        };
       };
     };
 
@@ -156,7 +166,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       initExtra = ''
-        my-motd
+        ${motd}/bin/my-motd
       '';
       history.size = 10000;
     };
