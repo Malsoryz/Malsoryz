@@ -24,3 +24,5 @@ Beginner programmer from Indonesia who is still in the learning stage.
 ![Malsoryz's Stats](https://github-readme-stats.vercel.app/api?username=Malsoryz&theme=dark&show_icons=true&hide_border=true&count_private=false)
 ![Malsoryz's Streak](https://github-readme-streak-stats.herokuapp.com/?user=Malsoryz&theme=dark&hide_border=true)
 ![Malsoryz's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Malsoryz&theme=dark&show_icons=true&hide_border=true&layout=compact)
+
+Some of my **Documents** are [here](./docs/README.md).
