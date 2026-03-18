@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@tailwindcss/typography v4 — Demo (No JS)</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --font-sans: "Inter", system-ui, sans-serif;
+                --font-mono: "Fira Code", monospace;
+                --color-white: #ffffff;
+                --color-gray-50: #f9fafb;
+                --color-gray-100: #f3f4f6;
+                --color-gray-200: #e5e7eb;
+                --color-gray-300: #d1d5db;
+                --color-gray-400: #9ca3af;
+                --color-gray-500: #6b7280;
+                --color-gray-600: #4b5563;
+                --color-gray-700: #374151;
+                --color-gray-800: #1f2937;
+                --color-gray-900: #111827;
+                --color-gray-950: #030712;
+                --color-slate-200: #e2e8f0;
+                --color-slate-300: #cbd5e1;
+                --color-slate-400: #94a3b8;
+                --color-slate-500: #64748b;
+                --color-slate-600: #475569;
+                --color-slate-700: #334155;
+                --color-slate-800: #1e293b;
+                --color-slate-900: #0f172a;
+                --color-zinc-200: #e4e4e7;
+                --color-zinc-300: #d4d4d8;
+                --color-zinc-400: #a1a1aa;
+                --color-zinc-500: #71717a;
+                --color-zinc-600: #52525b;
+                --color-zinc-700: #3f3f46;
+                --color-zinc-800: #27272a;
+                --color-zinc-900: #18181b;
+                --color-neutral-200: #e5e5e5;
+                --color-neutral-300: #d4d4d4;
+                --color-neutral-400: #a3a3a3;
+                --color-neutral-500: #737373;
+                --color-neutral-600: #525252;
+                --color-neutral-700: #404040;
+                --color-neutral-800: #262626;
+                --color-neutral-900: #171717;
+                --color-stone-200: #e7e5e4;
+                --color-stone-300: #d6d3d1;
+                --color-stone-400: #a8a29e;
+                --color-stone-500: #78716c;
+                --color-stone-600: #57534e;
+                --color-stone-700: #44403c;
+                --color-stone-800: #292524;
+                --color-stone-900: #1c1917;
+                --color-yellow-200: #fef08a;
+            }
+
+            html {
+                font-family: var(--font-sans);
+                background: var(--color-gray-50);
+                color: var(--color-gray-900);
+            }
+
+            /* hide all inputs */
+            .ctrl {
+                display: none;
+            }
+
+            /* ── PROSE ── */
+            .prose {
+                --tw-prose-body: var(--color-gray-700);
+                --tw-prose-headings: var(--color-gray-900);
+                --tw-prose-lead: var(--color-gray-600);
+                --tw-prose-links: var(--color-gray-900);
+                --tw-prose-bold: var(--color-gray-900);
+                --tw-prose-counters: var(--color-gray-500);
+                --tw-prose-bullets: var(--color-gray-300);
+                --tw-prose-hr: var(--color-gray-200);
+                --tw-prose-quotes: var(--color-gray-900);
+                --tw-prose-quote-borders: var(--color-gray-200);
+                --tw-prose-captions: var(--color-gray-500);
+                --tw-prose-kbd: var(--color-gray-900);
+                --tw-prose-kbd-shadows: 17 24 39;
+                --tw-prose-code: var(--color-gray-900);
+                --tw-prose-pre-code: var(--color-gray-200);
+                --tw-prose-pre-bg: var(--color-gray-800);
+                --tw-prose-th-borders: var(--color-gray-300);
+                --tw-prose-td-borders: var(--color-gray-200);
+                --tw-prose-invert-body: var(--color-gray-300);
+                --tw-prose-invert-headings: var(--color-white);
+                --tw-prose-invert-lead: var(--color-gray-400);
+                --tw-prose-invert-links: var(--color-white);
+                --tw-prose-invert-bold: var(--color-white);
+                --tw-prose-invert-counters: var(--color-gray-400);
+                --tw-prose-invert-bullets: var(--color-gray-600);
+                --tw-prose-invert-hr: var(--color-gray-700);
+                --tw-prose-invert-quotes: var(--color-gray-100);
+                --tw-prose-invert-quote-borders: var(--color-gray-700);
+                --tw-prose-invert-captions: var(--color-gray-400);
+                --tw-prose-invert-kbd: var(--color-white);
+                --tw-prose-invert-kbd-shadows: 255 255 255;
+                --tw-prose-invert-code: var(--color-white);
+                --tw-prose-invert-pre-code: var(--color-gray-300);
+                --tw-prose-invert-pre-bg: rgb(0 0 0/50%);
+                --tw-prose-invert-th-borders: var(--color-gray-600);
+                --tw-prose-invert-td-borders: var(--color-gray-700);
+                font-family: var(--font-sans);
+                font-size: 1rem;
+                line-height: 1.75;
+                color: var(--tw-prose-body);
+                max-width: 65ch;
+                margin-inline: auto;
+            }
+
+            .prose p {
+                margin-top: 1.25em;
+                margin-bottom: 1.25em;
+            }
+
+            .prose [class~="lead"] {
+                color: var(--tw-prose-lead);
+                font-size: 1.25em;
+                line-height: 1.6;
+                margin-top: 1.2em;
+                margin-bottom: 1.2em;
+            }
+
+            .prose a {
+                color: var(--tw-prose-links);
+                text-decoration: underline;
+                font-weight: 500;
+            }
+
+            .prose strong {
+                color: var(--tw-prose-bold);
+                font-weight: 600;
+            }
+
+            .prose em {
+                font-style: italic;
+            }
+
+            .prose h1,
+            .prose h2,
+            .prose h3,
+            .prose h4 {
+                color: var(--tw-prose-headings);
+                font-weight: 600;
+                line-height: 1.25;
+            }
+
+            .prose h1 {
+                font-size: 2.25em;
+                margin-top: 0;
+                margin-bottom: 0.8888889em;
+            }
+
+            .prose h2 {
+                font-size: 1.5em;
+                margin-top: 2em;
+                margin-bottom: 1em;
+            }
+
+            .prose h3 {
+                font-size: 1.25em;
+                margin-top: 1.6em;
+                margin-bottom: 0.6em;
+            }
+
+            .prose h4 {
+                font-size: 1em;
+                margin-top: 1.5em;
+                margin-bottom: 0.5em;
+            }
+
+            .prose figure {
+                margin-top: 2em;
+                margin-bottom: 2em;
+            }
+
+            .prose img,
+            .prose video {
+                margin-top: 2em;
+                margin-bottom: 2em;
+            }
+
+            .prose figcaption {
+                color: var(--tw-prose-captions);
+                font-size: 0.875em;
+                line-height: 1.4285714;
+                margin-top: 0.8571429em;
+            }
+
+            .prose code {
+                color: var(--tw-prose-code);
+                font-weight: 600;
+                font-size: 0.875em;
+                font-family: var(--font-mono);
+            }
+
+            .prose code::before {
+                content: "`";
+            }
+
+            .prose code::after {
+                content: "`";
+            }
+
+            .prose a code,
+            .prose h1 code,
+            .prose h2 code,
+            .prose h3 code,
+            .prose h4 code {
+                color: inherit;
+            }
+
+            .prose pre {
+                color: var(--tw-prose-pre-code);
+                background: var(--tw-prose-pre-bg);
+                overflow-x: auto;
+                font-weight: 400;
+                font-size: 0.875em;
+                line-height: 1.7142857;
+                margin-top: 1.7142857em;
+                margin-bottom: 1.7142857em;
+                border-radius: 0.375rem;
+                padding: 0.8571429em 1.1428571em;
+                font-family: var(--font-mono);
+            }
+
+            .prose pre code {
+                background: transparent;
+                border: 0;
+                padding: 0;
+                font-weight: inherit;
+                color: inherit;
+                font-size: inherit;
+                line-height: inherit;
+            }
+
+            .prose pre code::before,
+            .prose pre code::after {
+                content: none;
+            }
+
+            .prose kbd {
+                font-weight: 500;
+                color: var(--tw-prose-kbd);
+                box-shadow:
+                    0 0 0 1px rgb(var(--tw-prose-kbd-shadows) / 10%),
+                    0 3px 0 rgb(var(--tw-prose-kbd-shadows) / 10%);
+                font-size: 0.875em;
+                border-radius: 0.3125rem;
+                padding: 0.1875em 0.375em;
+            }
+
+            .prose hr {
+                border: 0;
+                border-top: 1px solid var(--tw-prose-hr);
+                margin-top: 3em;
+                margin-bottom: 3em;
+            }
+
+            .prose blockquote {
+                font-weight: 500;
+                font-style: italic;
+                color: var(--tw-prose-quotes);
+                border-left: 0.25rem solid var(--tw-prose-quote-borders);
+                quotes: "\201C" "\201D" "\2018" "\2019";
+                margin-top: 1.6em;
+                margin-bottom: 1.6em;
+                padding-inline-start: 1em;
+            }
+
+            .prose blockquote p:first-of-type::before {
+                content: open-quote;
+            }
+
+            .prose blockquote p:last-of-type::after {
+                content: close-quote;
+            }
+
+            .prose ol {
+                list-style-type: decimal;
+                margin-top: 1.25em;
+                margin-bottom: 1.25em;
+                padding-inline-start: 1.625em;
+            }
+
+            .prose ul {
+                list-style-type: disc;
+                margin-top: 1.25em;
+                margin-bottom: 1.25em;
+                padding-inline-start: 1.625em;
+            }
+
+            .prose li {
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+            }
+
+            .prose ol > li,
+            .prose ul > li {
+                padding-inline-start: 0.375em;
+            }
+
+            .prose ul > li::marker {
+                color: var(--tw-prose-bullets);
+            }
+
+            .prose ol > li::marker {
+                font-weight: 400;
+                color: var(--tw-prose-counters);
+            }
+
+            .prose table {
+                width: 100%;
+                table-layout: auto;
+                margin-top: 2em;
+                margin-bottom: 2em;
+                font-size: 0.875em;
+                line-height: 1.7142857;
+                border-collapse: collapse;
+            }
+
+            .prose thead {
+                border-bottom: 1px solid var(--tw-prose-th-borders);
+            }
+
+            .prose thead th {
+                color: var(--tw-prose-headings);
+                font-weight: 600;
+                vertical-align: bottom;
+                padding: 0.5714286em;
+                text-align: left;
+            }
+
+            .prose tbody tr {
+                border-bottom: 1px solid var(--tw-prose-td-borders);
+            }
+
+            .prose tbody tr:last-child {
+                border-bottom: 0;
+            }
+
+            .prose th,
+            .prose td {
+                padding: 0.5714286em;
+            }
+
+            .prose :where(p, blockquote, ul, ol, figure, pre, table, hr):first-child {
+                margin-top: 0;
+            }
+
+            .prose :where(p, blockquote, ul, ol, figure, pre, table, hr):last-child {
+                margin-bottom: 0;
+            }
+
+            .prose :where(.not-prose, .not-prose *) {
+                all: revert;
+            }
+
+            /* span inheritance */
+            .prose span strong,
+            .prose span em,
+            .prose span b,
+            .prose span i,
+            .prose span code,
+            .prose span a,
+            .prose span kbd,
+            .prose span mark,
+            .prose span s,
+            .prose span u,
+            .prose span del,
+            .prose span ins,
+            .prose span sub,
+            .prose span sup,
+            .prose span abbr,
+            .prose span cite,
+            .prose span dfn,
+            .prose span q,
+            .prose span small {
+                color: inherit;
+                font-size: inherit;
+            }
+
+            .prose span strong,
+            .prose span b {
+                font-weight: 700;
+            }
+
+            .prose span em,
+            .prose span i {
+                font-style: italic;
+            }
+
+            .prose span code {
+                font-family: var(--font-mono);
+                font-weight: 600;
+                background: transparent;
+            }
+
+            .prose span code::before,
+            .prose span code::after {
+                content: none;
+            }
+
+            .prose span a {
+                text-decoration: underline;
+                font-weight: 500;
+            }
+
+            .prose span mark {
+                background: var(--color-yellow-200);
+                border-radius: 0.125rem;
+                padding-inline: 0.125em;
+            }
+
+            .prose span del,
+            .prose span s {
+                text-decoration: line-through;
+                opacity: 0.75;
+            }
+
+            .prose span ins,
+            .prose span u {
+                text-decoration: underline;
+            }
+
+            .prose span sub {
+                vertical-align: sub;
+                font-size: 0.75em;
+            }
+
+            .prose span sup {
+                vertical-align: super;
+                font-size: 0.75em;
+            }
+
+            .prose span small {
+                font-size: 0.875em;
+            }
+
+            .prose span abbr[title] {
+                text-decoration: underline dotted;
+                cursor: help;
+            }
+
+            /* ── PAGE LAYOUT ── */
+            header {
+                background: var(--color-gray-950);
+                color: var(--color-white);
+                padding: 3rem 1.5rem;
+                text-align: center;
+            }
+
+            header .inner {
+                max-width: 48rem;
+                margin-inline: auto;
+            }
+
+            header .badge {
+                display: inline-block;
+                color: #38bdf8;
+                font-family: var(--font-mono);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                margin-bottom: 0.75rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                margin-bottom: 0.75rem;
+            }
+
+            header p {
+                color: var(--color-gray-400);
+                font-size: 1rem;
+            }
+
+            header code {
+                background: var(--color-gray-800);
+                color: #7dd3fc;
+                padding: 0.125rem 0.375rem;
+                border-radius: 0.25rem;
+                font-family: var(--font-mono);
+                font-size: 0.875em;
+            }
+
+            /* ── CONTROLS ── */
+            .controls {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                background: var(--color-white);
+                border-bottom: 1px solid var(--color-gray-200);
+                box-shadow: 0 1px 3px rgb(0 0 0/0.06);
+                padding: 0.625rem 1.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .ctrl-label {
+                font-size: 0.6875rem;
+                font-weight: 600;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--color-gray-500);
+                margin-right: 0.25rem;
+            }
+
+            .divider {
+                width: 1px;
+                height: 1.5rem;
+                background: var(--color-gray-200);
+                margin: 0 0.25rem;
+            }
+
+            label.pill {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.3125rem 0.75rem;
+                border-radius: 9999px;
+                border: 1px solid var(--color-gray-300);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                cursor: pointer;
+                color: var(--color-gray-700);
+                transition:
+                    background 0.12s,
+                    color 0.12s,
+                    border-color 0.12s;
+                user-select: none;
+            }
+
+            label.pill:hover {
+                background: var(--color-gray-100);
+            }
+
+            /* active pill — color */
+            #color-gray:checked~.demo-wrap label[for="color-gray"],
+    #color-slate:checked~.demo-wrap label[for="color-slate"],
+    #color-zinc:checked~.demo-wrap label[for="color-zinc"],
+    #color-neutral:checked~.demo-wrap label[for="color-neutral"],
+    #color-stone:checked~.demo-wrap label[for="color-stone"],
+    /* active pill — size */
+    #size-sm:checked~.demo-wrap label[for="size-sm"],
+    #size-base:checked~.demo-wrap label[for="size-base"],
+    #size-lg:checked~.demo-wrap label[for="size-lg"],
+    #size-xl:checked~.demo-wrap label[for="size-xl"],
+    #size-2xl:checked~.demo-wrap label[for="size-2xl"],
+    /* active pill — dark */
+    #dark-mode:checked~.demo-wrap label[for="dark-mode"] {
+                background: var(--color-gray-900);
+                color: var(--color-white);
+                border-color: var(--color-gray-900);
+            }
+
+            /* ── DEMO WRAP ── */
+            .demo-wrap {
+                max-width: 72rem;
+                margin-inline: auto;
+                padding: 3rem 1.5rem;
+            }
+
+            .demo-card {
+                background: var(--color-white);
+                border-radius: 1rem;
+                padding: 2rem;
+                box-shadow:
+                    0 1px 3px rgb(0 0 0/0.08),
+                    0 0 0 1px var(--color-gray-100);
+                transition: background 0.25s;
+            }
+
+            /* SIZE via :checked */
+            #size-sm:checked ~ .demo-wrap .prose {
+                font-size: 0.875rem;
+                line-height: 1.7142857;
+            }
+
+            #size-base:checked ~ .demo-wrap .prose {
+                font-size: 1rem;
+                line-height: 1.75;
+            }
+
+            #size-lg:checked ~ .demo-wrap .prose {
+                font-size: 1.125rem;
+                line-height: 1.7777778;
+            }
+
+            #size-xl:checked ~ .demo-wrap .prose {
+                font-size: 1.25rem;
+                line-height: 1.8;
+            }
+
+            #size-2xl:checked ~ .demo-wrap .prose {
+                font-size: 1.5rem;
+                line-height: 1.6666667;
+            }
+
+            /* COLOR THEMES via :checked — override CSS vars */
+            #color-slate:checked ~ .demo-wrap .prose {
+                --tw-prose-body: var(--color-slate-700);
+                --tw-prose-headings: var(--color-slate-900);
+                --tw-prose-lead: var(--color-slate-600);
+                --tw-prose-links: var(--color-slate-900);
+                --tw-prose-bold: var(--color-slate-900);
+                --tw-prose-counters: var(--color-slate-500);
+                --tw-prose-bullets: var(--color-slate-300);
+                --tw-prose-hr: var(--color-slate-200);
+                --tw-prose-quotes: var(--color-slate-900);
+                --tw-prose-quote-borders: var(--color-slate-200);
+                --tw-prose-captions: var(--color-slate-500);
+                --tw-prose-code: var(--color-slate-900);
+                --tw-prose-pre-code: var(--color-slate-200);
+                --tw-prose-pre-bg: var(--color-slate-800);
+                --tw-prose-th-borders: var(--color-slate-300);
+                --tw-prose-td-borders: var(--color-slate-200);
+                --tw-prose-invert-body: var(--color-slate-300);
+                --tw-prose-invert-headings: var(--color-white);
+                --tw-prose-invert-lead: var(--color-slate-400);
+                --tw-prose-invert-bold: var(--color-white);
+                --tw-prose-invert-counters: var(--color-slate-400);
+                --tw-prose-invert-bullets: var(--color-slate-600);
+                --tw-prose-invert-hr: var(--color-slate-700);
+                --tw-prose-invert-quotes: var(--color-slate-100);
+                --tw-prose-invert-quote-borders: var(--color-slate-700);
+                --tw-prose-invert-captions: var(--color-slate-400);
+                --tw-prose-invert-code: var(--color-white);
+                --tw-prose-invert-pre-code: var(--color-slate-300);
+                --tw-prose-invert-pre-bg: rgb(0 0 0/50%);
+                --tw-prose-invert-th-borders: var(--color-slate-600);
+                --tw-prose-invert-td-borders: var(--color-slate-700);
+            }
+
+            #color-zinc:checked ~ .demo-wrap .prose {
+                --tw-prose-body: var(--color-zinc-700);
+                --tw-prose-headings: var(--color-zinc-900);
+                --tw-prose-lead: var(--color-zinc-600);
+                --tw-prose-links: var(--color-zinc-900);
+                --tw-prose-bold: var(--color-zinc-900);
+                --tw-prose-counters: var(--color-zinc-500);
+                --tw-prose-bullets: var(--color-zinc-300);
+                --tw-prose-hr: var(--color-zinc-200);
+                --tw-prose-quotes: var(--color-zinc-900);
+                --tw-prose-quote-borders: var(--color-zinc-200);
+                --tw-prose-captions: var(--color-zinc-500);
+                --tw-prose-code: var(--color-zinc-900);
+                --tw-prose-pre-code: var(--color-zinc-200);
+                --tw-prose-pre-bg: var(--color-zinc-800);
+                --tw-prose-th-borders: var(--color-zinc-300);
+                --tw-prose-td-borders: var(--color-zinc-200);
+                --tw-prose-invert-body: var(--color-zinc-300);
+                --tw-prose-invert-headings: var(--color-white);
+                --tw-prose-invert-lead: var(--color-zinc-400);
+                --tw-prose-invert-bold: var(--color-white);
+                --tw-prose-invert-counters: var(--color-zinc-400);
+                --tw-prose-invert-bullets: var(--color-zinc-600);
+                --tw-prose-invert-hr: var(--color-zinc-700);
+                --tw-prose-invert-quotes: var(--color-zinc-100);
+                --tw-prose-invert-quote-borders: var(--color-zinc-700);
+                --tw-prose-invert-captions: var(--color-zinc-400);
+                --tw-prose-invert-code: var(--color-white);
+                --tw-prose-invert-pre-code: var(--color-zinc-300);
+                --tw-prose-invert-pre-bg: rgb(0 0 0/50%);
+                --tw-prose-invert-th-borders: var(--color-zinc-600);
+                --tw-prose-invert-td-borders: var(--color-zinc-700);
+            }
+
+            #color-neutral:checked ~ .demo-wrap .prose {
+                --tw-prose-body: var(--color-neutral-700);
+                --tw-prose-headings: var(--color-neutral-900);
+                --tw-prose-lead: var(--color-neutral-600);
+                --tw-prose-links: var(--color-neutral-900);
+                --tw-prose-bold: var(--color-neutral-900);
+                --tw-prose-counters: var(--color-neutral-500);
+                --tw-prose-bullets: var(--color-neutral-300);
+                --tw-prose-hr: var(--color-neutral-200);
+                --tw-prose-quotes: var(--color-neutral-900);
+                --tw-prose-quote-borders: var(--color-neutral-200);
+                --tw-prose-captions: var(--color-neutral-500);
+                --tw-prose-code: var(--color-neutral-900);
+                --tw-prose-pre-code: var(--color-neutral-200);
+                --tw-prose-pre-bg: var(--color-neutral-800);
+                --tw-prose-th-borders: var(--color-neutral-300);
+                --tw-prose-td-borders: var(--color-neutral-200);
+                --tw-prose-invert-body: var(--color-neutral-300);
+                --tw-prose-invert-headings: var(--color-white);
+                --tw-prose-invert-lead: var(--color-neutral-400);
+                --tw-prose-invert-bold: var(--color-white);
+                --tw-prose-invert-counters: var(--color-neutral-400);
+                --tw-prose-invert-bullets: var(--color-neutral-600);
+                --tw-prose-invert-hr: var(--color-neutral-700);
+                --tw-prose-invert-quotes: var(--color-neutral-100);
+                --tw-prose-invert-quote-borders: var(--color-neutral-700);
+                --tw-prose-invert-captions: var(--color-neutral-400);
+                --tw-prose-invert-code: var(--color-white);
+                --tw-prose-invert-pre-code: var(--color-neutral-300);
+                --tw-prose-invert-pre-bg: rgb(0 0 0/50%);
+                --tw-prose-invert-th-borders: var(--color-neutral-600);
+                --tw-prose-invert-td-borders: var(--color-neutral-700);
+            }
+
+            #color-stone:checked ~ .demo-wrap .prose {
+                --tw-prose-body: var(--color-stone-700);
+                --tw-prose-headings: var(--color-stone-900);
+                --tw-prose-lead: var(--color-stone-600);
+                --tw-prose-links: var(--color-stone-900);
+                --tw-prose-bold: var(--color-stone-900);
+                --tw-prose-counters: var(--color-stone-500);
+                --tw-prose-bullets: var(--color-stone-300);
+                --tw-prose-hr: var(--color-stone-200);
+                --tw-prose-quotes: var(--color-stone-900);
+                --tw-prose-quote-borders: var(--color-stone-200);
+                --tw-prose-captions: var(--color-stone-500);
+                --tw-prose-code: var(--color-stone-900);
+                --tw-prose-pre-code: var(--color-stone-200);
+                --tw-prose-pre-bg: var(--color-stone-800);
+                --tw-prose-th-borders: var(--color-stone-300);
+                --tw-prose-td-borders: var(--color-stone-200);
+                --tw-prose-invert-body: var(--color-stone-300);
+                --tw-prose-invert-headings: var(--color-white);
+                --tw-prose-invert-lead: var(--color-stone-400);
+                --tw-prose-invert-bold: var(--color-white);
+                --tw-prose-invert-counters: var(--color-stone-400);
+                --tw-prose-invert-bullets: var(--color-stone-600);
+                --tw-prose-invert-hr: var(--color-stone-700);
+                --tw-prose-invert-quotes: var(--color-stone-100);
+                --tw-prose-invert-quote-borders: var(--color-stone-700);
+                --tw-prose-invert-captions: var(--color-stone-400);
+                --tw-prose-invert-code: var(--color-white);
+                --tw-prose-invert-pre-code: var(--color-stone-300);
+                --tw-prose-invert-pre-bg: rgb(0 0 0/50%);
+                --tw-prose-invert-th-borders: var(--color-stone-600);
+                --tw-prose-invert-td-borders: var(--color-stone-700);
+            }
+
+            /* DARK MODE via :checked */
+            #dark-mode:checked ~ .demo-wrap .demo-card {
+                background: var(--color-gray-900);
+            }
+
+            #dark-mode:checked ~ .demo-wrap .prose {
+                --tw-prose-body: var(--tw-prose-invert-body);
+                --tw-prose-headings: var(--tw-prose-invert-headings);
+                --tw-prose-lead: var(--tw-prose-invert-lead);
+                --tw-prose-links: var(--tw-prose-invert-links);
+                --tw-prose-bold: var(--tw-prose-invert-bold);
+                --tw-prose-counters: var(--tw-prose-invert-counters);
+                --tw-prose-bullets: var(--tw-prose-invert-bullets);
+                --tw-prose-hr: var(--tw-prose-invert-hr);
+                --tw-prose-quotes: var(--tw-prose-invert-quotes);
+                --tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+                --tw-prose-captions: var(--tw-prose-invert-captions);
+                --tw-prose-kbd: var(--tw-prose-invert-kbd);
+                --tw-prose-kbd-shadows: var(--tw-prose-invert-kbd-shadows);
+                --tw-prose-code: var(--tw-prose-invert-code);
+                --tw-prose-pre-code: var(--tw-prose-invert-pre-code);
+                --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
+                --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
+                --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+            }
+
+            /* ── FOOTER ── */
+            .code-footer {
+                background: var(--color-gray-950);
+                color: var(--color-white);
+                padding: 3rem 1.5rem;
+            }
+
+            .code-footer .inner {
+                max-width: 48rem;
+                margin-inline: auto;
+            }
+
+            .code-footer h2 {
+                font-size: 1.125rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: var(--color-gray-100);
+            }
+
+            .code-footer pre {
+                background: var(--color-gray-900);
+                border-radius: 0.75rem;
+                padding: 1.5rem;
+                font-size: 0.875rem;
+                color: var(--color-gray-300);
+                overflow-x: auto;
+                font-family: var(--font-mono);
+                line-height: 1.7;
+            }
+
+            .code-footer p {
+                margin-top: 1.5rem;
+                font-size: 0.8125rem;
+                color: #6b7280;
+            }
+
+            .code-footer code {
+                background: #1f2937;
+                padding: 0.1em 0.3em;
+                border-radius: 0.25rem;
+                font-family: var(--font-mono);
+            }
+
+            .t-sky {
+                color: #38bdf8;
+            }
+
+            .t-purple {
+                color: #c084fc;
+            }
+
+            .t-green {
+                color: #86efac;
+            }
+
+            .t-red {
+                color: #fca5a5;
+            }
+
+            .t-yellow {
+                color: #fde68a;
+            }
+
+            .t-gray {
+                color: #6b7280;
+            }
+
+            /* not-prose callout */
+            .nope-note {
+                margin-top: 1.5rem;
+                padding: 1rem;
+                background: #fffbeb;
+                border: 1px solid #fcd34d;
+                border-radius: 0.75rem;
+                font-size: 0.875rem;
+                color: #92400e;
+                font-family: var(--font-sans);
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--
+    TEKNIK CSS-ONLY TOGGLE
+    ========================
+    Semua <input> diletakkan SEBELUM .demo-wrap agar bisa
+    dijangkau oleh CSS sibling selector  ~
+    
+    input:checked ~ .demo-wrap <target> { ... }
+    
+    <label for="..."> di dalam .demo-wrap men-trigger input
+    di atas karena label+for bekerja di seluruh dokumen.
+  -->
+
+        <!-- Color theme — radio (single choice) -->
+        <input class="ctrl" type="radio" name="color" id="color-gray" checked />
+        <input class="ctrl" type="radio" name="color" id="color-slate" />
+        <input class="ctrl" type="radio" name="color" id="color-zinc" />
+        <input class="ctrl" type="radio" name="color" id="color-neutral" />
+        <input class="ctrl" type="radio" name="color" id="color-stone" />
+
+        <!-- Size — radio -->
+        <input class="ctrl" type="radio" name="size" id="size-sm" />
+        <input class="ctrl" type="radio" name="size" id="size-base" checked />
+        <input class="ctrl" type="radio" name="size" id="size-lg" />
+        <input class="ctrl" type="radio" name="size" id="size-xl" />
+        <input class="ctrl" type="radio" name="size" id="size-2xl" />
+
+        <!-- Dark mode — checkbox (toggle) -->
+        <input class="ctrl" type="checkbox" id="dark-mode" />
+
+        <!-- ── HEADER ── -->
+        <header>
+            <div class="inner">
+                <span class="badge">@tailwindcss/typography — Tailwind v4 Remake</span>
+                <h1>Beautiful Typographic Defaults</h1>
+                <p>
+                    Gunakan <code>prose</code> pada container apapun untuk men-style HTML yang tidak Anda kontrol.<br />
+                    <small style="font-size: 0.8em; color: #6b7280; display: block; margin-top: 0.5rem">
+                        ✅ Demo ini 100% tanpa JavaScript — semua toggle menggunakan
+                        <code>input:checked ~ sibling</code> CSS selector murni.
+                    </small>
+                </p>
+            </div>
+        </header>
+
+        <!-- ── DEMO WRAPPER — sibling dari semua input di atas ── -->
+        <div class="demo-wrap">
+            <!-- sticky nav ada DI DALAM .demo-wrap supaya label bisa visible,
+         tapi tetap menjangkau input karena label[for] bekerja global -->
+            <nav class="controls">
+                <span class="ctrl-label">Color</span>
+                <label class="pill" for="color-gray">Gray</label>
+                <label class="pill" for="color-slate">Slate</label>
+                <label class="pill" for="color-zinc">Zinc</label>
+                <label class="pill" for="color-neutral">Neutral</label>
+                <label class="pill" for="color-stone">Stone</label>
+                <div class="divider"></div>
+                <span class="ctrl-label">Size</span>
+                <label class="pill" for="size-sm">sm</label>
+                <label class="pill" for="size-base">base</label>
+                <label class="pill" for="size-lg">lg</label>
+                <label class="pill" for="size-xl">xl</label>
+                <label class="pill" for="size-2xl">2xl</label>
+                <div class="divider"></div>
+                <span class="ctrl-label">Mode</span>
+                <label class="pill" for="dark-mode">🌙 Invert (dark)</label>
+            </nav>
+
+            <div style="height: 2rem"></div>
+
+            <div class="demo-card">
+                <article class="prose">
+                    <h1>Garlic Bread with Cheese: What the Science Tells Us</h1>
+
+                    <p class="lead">
+                        For years, parents have espoused the health benefits of eating garlic bread with cheese to their
+                        children, with the food earning such an iconic status in our culture that kids often dress up as
+                        a warm, cheesy loaf for Halloween.
+                    </p>
+
+                    <p>
+                        But a recent study shows that the celebrated appetizer may be linked to a series of rabies cases
+                        springing up around the country. Researchers at the
+                        <a href="#">National Bread Institute</a> have been tracking the correlation since early 2023,
+                        and the findings are <strong>deeply concerning</strong>
+                        to those in the culinary health community.
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            "We have never seen anything quite like this. Garlic bread has long been considered a
+                            cornerstone of a healthy, balanced diet — but this changes everything."
+                        </p>
+                    </blockquote>
+
+                    <h2>The Evidence</h2>
+
+                    <p>
+                        Scientists examined 2,847 garlic bread samples across six continents, using
+                        <em>mass spectrometry</em>
+                        and classical tasting panels. Here's what they found:
+                    </p>
+
+                    <ul>
+                        <li>Elevated mozzarella content correlated with heightened sociability in test subjects.</li>
+                        <li>
+                            Whole grain varieties showed a <strong>23% improvement</strong> in focus and concentration.
+                        </li>
+                        <li>Sourdough bases were found to contain trace amounts of existential dread.</li>
+                    </ul>
+
+                    <h3>Methodology</h3>
+
+                    <p>All participants abstained from garlic for <code>72 hours</code> prior to each session.</p>
+
+                    <pre><code>POST /api/v1/garlic-study/results
+Authorization: Bearer &lt;token&gt;
+Content-Type: application/json
+
+{
+  "participant_id": "garlicfan-001",
+  "verdict": "delicious"
+}</code></pre>
+
+                    <h3>Key Press Shortcuts</h3>
+                    <p>
+                        Researchers logged results with <kbd>Ctrl</kbd> + <kbd>G</kbd> (garlic), <kbd>Ctrl</kbd> +
+                        <kbd>B</kbd> (bread), and <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+                        to undo accidental sourdough entries.
+                    </p>
+
+                    <h2>Data Summary</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bread Type</th>
+                                <th>Cheese Ratio</th>
+                                <th>Rabies Risk</th>
+                                <th>Taste Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Baguette</td>
+                                <td>High</td>
+                                <td>Low</td>
+                                <td>9.2 / 10</td>
+                            </tr>
+                            <tr>
+                                <td>Sourdough</td>
+                                <td>Medium</td>
+                                <td>Medium</td>
+                                <td>8.8 / 10</td>
+                            </tr>
+                            <tr>
+                                <td>Ciabatta</td>
+                                <td>Very High</td>
+                                <td>Very Low</td>
+                                <td>9.5 / 10</td>
+                            </tr>
+                            <tr>
+                                <td>Gluten-free</td>
+                                <td>Low</td>
+                                <td>High</td>
+                                <td>6.1 / 10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Ordered Steps</h2>
+                    <ol>
+                        <li>Preheat oven to 190 °C (375 °F).</li>
+                        <li>Slice baguette diagonally into 2 cm portions.</li>
+                        <li>Spread garlic butter liberally on each slice.</li>
+                        <li>Top with mozzarella and a sprinkle of parmesan.</li>
+                        <li>Bake for 12–15 minutes until cheese bubbles.</li>
+                        <li>Serve immediately. Do not share with pets.</li>
+                    </ol>
+
+                    <hr />
+
+                    <h2>Conclusion</h2>
+                    <p>
+                        While more research is needed, the current evidence strongly suggests that garlic bread with
+                        cheese is not only safe in moderation but may in fact be one of the great unsung contributors to
+                        human happiness and social cohesion.
+                    </p>
+
+                    <figure>
+                        <img
+                            src="https://images.unsplash.com/photo-1619531040576-f9416740661a?w=800&q=80"
+                            alt="Golden garlic bread fresh from the oven"
+                            style="border-radius: 0.5rem; width: 100%"
+                        />
+                        <figcaption>
+                            Golden garlic bread fresh from the oven — the subject of much scientific debate.
+                        </figcaption>
+                    </figure>
+
+                    <hr />
+
+                    <h2>Span Inheritance — Formatting Mengikuti Warna Span</h2>
+
+                    <p>
+                        Ketika elemen formatting berada di dalam <code>&lt;span&gt;</code>, mereka
+                        <strong>mewarisi warna dari span</strong> — bukan dari token prose global.
+                    </p>
+
+                    <ul>
+                        <li>
+                            <span style="color: #2563eb"
+                                >Biru — <strong>bold biru</strong>, <em>italic biru</em>, <code>code biru</code>.</span
+                            >
+                        </li>
+                        <li>
+                            <span style="color: #16a34a"
+                                >Hijau — <strong>bold hijau</strong>, <em>italic hijau</em>,
+                                <a href="#">link hijau</a>.</span
+                            >
+                        </li>
+                        <li>
+                            <span style="color: #dc2626"
+                                >Merah — <strong>bold merah</strong>, <del>strikethrough merah</del>,
+                                <code>code merah</code>.</span
+                            >
+                        </li>
+                        <li>
+                            <span style="color: #7c3aed"
+                                >Ungu — <strong>bold ungu</strong>, <em>italic ungu</em>, teks <sub>sub</sub> dan
+                                <sup>sup</sup>.</span
+                            >
+                        </li>
+                        <li>
+                            <span style="color: #0891b2"
+                                >Cyan — <mark>highlight</mark> tetap terlihat, dan <strong>bold</strong> ikut
+                                cyan.</span
+                            >
+                        </li>
+                    </ul>
+
+                    <p>
+                        Tanpa span: <strong>bold</strong> pakai <code>--tw-prose-bold</code>, <em>italic</em> mewarisi
+                        body, <code>code</code> pakai <code>--tw-prose-code</code>.
+                    </p>
+
+                    <div class="not-prose nope-note">
+                        ⚠️ <strong>not-prose block</strong> — elemen ini keluar dari semua style prose. Tailwind
+                        utilities dan inline styles bekerja normal di sini.
+                    </div>
+                </article>
+            </div>
+        </div>
+        <!-- /.demo-wrap -->
+
+        <!-- ── FOOTER ── -->
+        <div class="code-footer">
+            <div class="inner">
+                <h2>Cara pakai</h2>
+                <pre><span class="t-sky">/* main.css */</span>
+<span class="t-purple">@import</span> <span class="t-green">"tailwindcss"</span>;
+<span class="t-purple">@import</span> <span class="t-green">"./src/index.css"</span>; <span class="t-gray">/* plugin ini */</span>
+
+<span class="t-sky">/* HTML */</span>
+&lt;<span class="t-red">article</span> <span class="t-yellow">class</span>=<span class="t-green">"prose lg:prose-xl dark:prose-invert"</span>&gt;
+  <span class="t-gray">&lt;!-- HTML dari Markdown / CMS --&gt;</span>
+&lt;/<span class="t-red">article</span>&gt;</pre>
+                <p>
+                    Demo ini 100% tanpa JavaScript. Toggle warna, ukuran, dan dark mode semuanya menggunakan
+                    <code>input:checked ~ .sibling</code> CSS selector murni — tidak ada event listener, tidak ada
+                    classList, tidak ada framework.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

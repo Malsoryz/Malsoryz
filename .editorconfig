@@ -1,0 +1,79 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+tab_width = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 120
+
+[*.{html,htm,css,scss,sass,less,js,cjs,mjs,jsx,ts,tsx,vue,blade.php,twig}]
+indent_size = 4
+
+[*.{json,jsonc,json5}]
+indent_size = 2
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{xml,svg,xsl,xslt}]
+indent_size = 2
+
+[*.php]
+indent_size = 4
+
+[*.py]
+indent_size    = 4
+max_line_length = 88
+
+[*.{rb,rake}]
+indent_size = 2
+
+[*.go]
+indent_style = tab
+indent_size  = 4
+
+[*.rs]
+indent_size     = 4
+max_line_length = 100
+
+[*.{java,kt,kts}]
+indent_size = 4
+
+[*.{c,h,cpp,hpp,cs}]
+indent_size = 4
+
+[*.{sh,bash,zsh,fish}]
+indent_size = 2
+end_of_line = lf
+
+[*.{md,mdx,markdown}]
+trim_trailing_whitespace = false
+max_line_length          = off
+
+[*.txt]
+trim_trailing_whitespace = false
+max_line_length          = off
+
+[*.{toml,ini,cfg,conf,env,env.*}]
+indent_size = 2
+
+[{Dockerfile,Dockerfile.*,*.dockerfile}]
+indent_size = 2
+
+[{Makefile,makefile,GNUmakefile,*.mk}]
+indent_style = tab
+indent_size  = 4
+
+[{.gitconfig,.gitattributes,.gitmodules}]
+indent_size = 2
+
+[{.github/**,*.gitlab-ci.yml,Jenkinsfile,*.circleci}]
+indent_size = 2
+
+[{package-lock.json,yarn.lock,pnpm-lock.yaml,composer.lock,Cargo.lock,Gemfile.lock,poetry.lock}]
+insert_final_newline     = false
+trim_trailing_whitespace = false
