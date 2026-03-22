@@ -9,6 +9,9 @@
   ...
 }:
 let
+  nixosConfigurationPath = "/home/alternity/dotfiles/Nix/nixos";
+  homeConfigurationsPath = "/home/alternity/dotfiles/Nix/home-manager";
+
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
   antigravitySettings = import ./modules/home/antigravity-settings.nix;
@@ -120,6 +123,22 @@ in
       jsonFmt.generate "extensions.json" antigravityExtensions;
   };
 
+  home.shellAliases = {
+    rebuild-system = "sudo nixos-rebuild switch --flake ${nixosConfigurationPath}#aru";
+    rebuild-system-boot = "sudo nixos-rebuild boot --flake ${nixosConfigurationPath}#aru";
+    rebuild-system-test = "sudo nixos-rebuild test --flake ${nixosConfigurationPath}#aru";
+
+    rebuild-home = "home-manager switch --flake ${homeConfigurationsPath}#alternity";
+
+    rebuild-all = "sudo nixos-rebuild switch --flake ${nixosConfigurationPath}#aru && home-manager switch --flake ${homeConfigurationsPath}#alternity";
+
+    ls = "${pkgs.eza}/bin/eza --icons";
+    ll = "${pkgs.eza}/bin/eza -lah --icons";
+    cat = "${pkgs.bat}/bin/bat";
+    pisan = "${pkgs.php84}/bin/php artisan";
+    code = "${pkgs.antigravity}/bin/antigravity";
+  };
+
   programs.git = {
     enable = true;
     settings = {
@@ -176,13 +195,6 @@ in
 
   programs.fish = {
     enable = true;
-    shellAliases = {
-      ls = "${pkgs.eza}/bin/eza --icons";
-      ll = "${pkgs.eza}/bin/eza -lah --icons";
-      cat = "${pkgs.bat}/bin/bat";
-      pisan = "${pkgs.php84}/bin/php artisan";
-      code = "${pkgs.antigravity}/bin/antigravity";
-    };
   };
 
   programs.starship = {
