@@ -106,6 +106,12 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  # Steam
+  programs.steam.enable = true;
+
+  # GameMode
+  programs.gamemode.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -116,6 +122,13 @@
     #  wget
     docker-compose
     ctop
+
+    # Gaming packages
+    steam-run
+    mangohud
+    protonup-qt
+    gamemode
+    lutris
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
