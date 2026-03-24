@@ -1,5 +1,0 @@
-{
-  "recomendations" = [
-    "laravel.vscode-laravel"
-  ];
-}

@@ -1,0 +1,27 @@
+{ pkgs, ... }:
+let
+  jsonFmt = pkgs.formats.json { };
+in
+{
+  # Antigravity Settings
+  home.file = {
+    # Main User Settings
+    ".config/Antigravity/User/settings.json".source = (
+      jsonFmt.generate "settings.json" {
+        "workbench.sideBar.location" = "right";
+        "workbench.colorTheme" = "Catppuccin Mocha";
+        "json.schemaDownload.enable" = true;
+        "editor.fontFamily" = "JetBrainsMono Nerd Font, monospace";
+      }
+    );
+
+    # Main User Extensions
+    ".config/Antigravity/User/extensions.json".source = (
+      jsonFmt.generate "extensions.json" {
+        "recomendations" = [
+          "laravel.vscode-laravel"
+        ];
+      }
+    );
+  };
+}

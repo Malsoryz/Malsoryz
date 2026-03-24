@@ -1,25 +1,20 @@
 {
   config,
   pkgs,
-  gremlin,
-  spicetify-nix,
-  catppuccin,
-  nix-phps,
-  phpPackages,
+  inputs,
   ...
 }:
 let
   nixosConfigurationPath = "/home/alternity/dotfiles/Nix/nixos";
   homeConfigurationsPath = "/home/alternity/dotfiles/Nix/home-manager";
 
-  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
-  antigravitySettings = import ./modules/home/antigravity-settings.nix;
-  antigravityExtensions = import ./modules/home/antigravity-extensions.nix;
+  phps = inputs.nix-phps.packages.${pkgs.stdenv.hostPlatform.system};
 
-  phps = nix-phps.packages.${pkgs.stdenv.hostPlatform.system};
+  gremlin = inputs.uma-gremlin.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-  jsonFmt = pkgs.formats.json { };
+  phpPackages = inputs.fossar-phps.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -71,8 +66,12 @@ in
       gnomeExtensions.emoji-copy
       gnomeExtensions.auto-adwaita-colors
       gnomeExtensions.bluetooth-battery-meter
+      gnomeExtensions.caffeine
+      gnomeExtensions.category-sorted-app-grid
+      gnomeExtensions.latency
+      gnomeExtensions.internet-speed-meter
     ]
-    ++ phpPackages;
+    ++ [ phpPackages ];
 
   gtk = {
     enable = true;
@@ -90,6 +89,10 @@ in
         "emoji-copy@felipeftn"
         "auto-adwaita-colors@cecidon"
         "bluetooth-battery-meter@maniacx.github.com"
+        "caffeine@patapon.info"
+        "category-sorted-app-grid@noobping.dev"
+        "latency@mboscovich.github.io"
+        "InternetSpeedMeter@alshakib.dev"
       ];
     };
 
@@ -111,16 +114,6 @@ in
         "Print"
       ];
     };
-  };
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # Antigravity Settings
-    ".config/Antigravity/User/settings.json".source =
-      jsonFmt.generate "settings.json" antigravitySettings;
-    ".config/Antigravity/User/extensions.json".source =
-      jsonFmt.generate "extensions.json" antigravityExtensions;
   };
 
   home.shellAliases = {
