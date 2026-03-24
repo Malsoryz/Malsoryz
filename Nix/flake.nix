@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     fossar-phps = {
-      url = "path:./packages/fossar-phps";
+      url = "path:./modules/flakes/fossar-phps";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-phps.follows = "nix-phps";
     };
@@ -30,7 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     uma-gremlin = {
-      url = "path:./packages/uma-gremlin";
+      url = "path:./modules/flakes/uma-gremlin";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.desktop-gremlin.follows = "desktop-gremlin";
     };
