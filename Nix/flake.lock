@@ -82,11 +82,11 @@
         ]
       },
       "locked": {
-        "path": "./packages/fossar-phps",
+        "path": "./modules/flakes/fossar-phps",
         "type": "path"
       },
       "original": {
-        "path": "./packages/fossar-phps",
+        "path": "./modules/flakes/fossar-phps",
         "type": "path"
       },
       "parent": []
@@ -282,11 +282,11 @@
         ]
       },
       "locked": {
-        "path": "./packages/uma-gremlin",
+        "path": "./modules/flakes/uma-gremlin",
         "type": "path"
       },
       "original": {
-        "path": "./packages/uma-gremlin",
+        "path": "./modules/flakes/uma-gremlin",
         "type": "path"
       },
       "parent": []

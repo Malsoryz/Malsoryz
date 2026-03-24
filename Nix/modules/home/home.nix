@@ -5,8 +5,8 @@
   ...
 }:
 let
-  nixosConfigurationPath = "/home/alternity/dotfiles/Nix/nixos";
-  homeConfigurationsPath = "/home/alternity/dotfiles/Nix/home-manager";
+  # Change into current path
+  configurationPath = "/home/alternity/dotfiles/Nix";
 
   uma-gremlin = inputs.uma-gremlin.packages.${pkgs.stdenv.hostPlatform.system}.default;
   phpPackages = inputs.fossar-phps.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -53,13 +53,13 @@ in
     ++ [ phpPackages ];
 
   home.shellAliases = {
-    rebuild-system = "sudo nixos-rebuild switch --flake ${nixosConfigurationPath}#aru";
-    rebuild-system-boot = "sudo nixos-rebuild boot --flake ${nixosConfigurationPath}#aru";
-    rebuild-system-test = "sudo nixos-rebuild test --flake ${nixosConfigurationPath}#aru";
+    rebuild-system = "sudo nixos-rebuild switch --flake ${configurationPath}#aru";
+    rebuild-system-boot = "sudo nixos-rebuild boot --flake ${configurationPath}#aru";
+    rebuild-system-test = "sudo nixos-rebuild test --flake ${configurationPath}#aru";
 
-    rebuild-home = "home-manager switch --flake ${homeConfigurationsPath}#alternity";
+    rebuild-home = "home-manager switch --flake ${configurationPath}#alternity";
 
-    rebuild-all = "sudo nixos-rebuild switch --flake ${nixosConfigurationPath}#aru && home-manager switch --flake ${homeConfigurationsPath}#alternity";
+    rebuild-all = "sudo nixos-rebuild switch --flake ${configurationPath}#aru && home-manager switch --flake ${configurationPath}#alternity";
 
     ls = "${pkgs.eza}/bin/eza --icons";
     ll = "${pkgs.eza}/bin/eza -lah --icons";
@@ -68,7 +68,12 @@ in
     code = "${pkgs.antigravity}/bin/antigravity";
   };
 
-  # Programs
+  home.sessionVariables = {
+    EDITOR = "${pkgs.antigravity}/bin/antigravity";
+    NIX_CONFIG_PATH = configurationPath;
+  };
+
+  # Programs --------------------------------------------- #
 
   programs.git = {
     enable = true;
@@ -123,7 +128,8 @@ in
   programs.home-manager.enable = true;
   programs.fish.enable = true;
 
-  # Catppuccin Theme
+  # Catppuccin Theme --------------------------------------- #
+
   catppuccin.kitty = {
     enable = true;
     flavor = "mocha";
