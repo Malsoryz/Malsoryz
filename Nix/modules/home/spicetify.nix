@@ -11,11 +11,11 @@ in
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       shuffle
+      beautifulLyrics
     ];
 
     enabledCustomApps = with spicePkgs.apps; [
       marketplace
-      lyricsPlus
       newReleases
     ];
   };

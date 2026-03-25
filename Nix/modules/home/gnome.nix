@@ -1,5 +1,15 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs.gnomeExtensions; [
+    clipboard-indicator
+    blur-my-shell
+    emoji-copy
+    launch-new-instance
+    status-icons
+    system-monitor
+    caffeine
+  ];
+
   gtk = {
     enable = true;
     iconTheme = {
@@ -14,12 +24,10 @@
         "clipboard-indicator@tudmotu.com"
         "blur-my-shell@aunetx"
         "emoji-copy@felipeftn"
-        "auto-adwaita-colors@cecidon"
-        "bluetooth-battery-meter@maniacx.github.com"
         "caffeine@patapon.info"
-        "category-sorted-app-grid@noobping.dev"
-        "latency@mboscovich.github.io"
-        "InternetSpeedMeter@alshakib.dev"
+        "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+        "status-icons@gnome-shell-extensions.gcampax.github.com"
+        "system-monitor@gnome-shell-extensions.gcampax.github.com"
       ];
     };
 

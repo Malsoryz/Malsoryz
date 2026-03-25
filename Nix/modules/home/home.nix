@@ -39,17 +39,6 @@ in
       # Uma Gremlins
       uma-gremlin
     ]
-    ++ (with pkgs.gnomeExtensions; [
-      clipboard-indicator
-      blur-my-shell
-      emoji-copy
-      auto-adwaita-colors
-      bluetooth-battery-meter
-      caffeine
-      category-sorted-app-grid
-      latency
-      internet-speed-meter
-    ])
     ++ [ phpPackages ];
 
   home.shellAliases = {
