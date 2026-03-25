@@ -65,6 +65,7 @@
       flake.templates = {
         laravel = {
           path = ./modules/templates/laravel;
+          description = "Laravel development flake template";
         };
       };
     };
