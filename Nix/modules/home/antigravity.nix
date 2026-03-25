@@ -18,8 +18,10 @@ in
     # Main User Extensions
     ".config/Antigravity/User/extensions.json".source = (
       jsonFmt.generate "extensions.json" {
-        "recomendations" = [
+        "recommendations" = [
           "laravel.vscode-laravel"
+          "bradlc.vscode-tailwindcss"
+          "bmewburn.vscode-intelephense-client"
         ];
       }
     );

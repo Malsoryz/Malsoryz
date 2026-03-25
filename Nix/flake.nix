@@ -61,5 +61,11 @@
           inputs.catppuccin.homeModules.catppuccin
         ];
       };
+
+      flake.templates = {
+        laravel = {
+          path = ./modules/templates/laravel;
+        };
+      };
     };
 }
