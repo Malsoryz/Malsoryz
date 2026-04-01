@@ -116,6 +116,7 @@ in
   programs.onlyoffice.enable = true;
   programs.home-manager.enable = true;
   programs.fish.enable = true;
+  programs.claude-code.enable = true;
 
   # Catppuccin Theme --------------------------------------- #
 

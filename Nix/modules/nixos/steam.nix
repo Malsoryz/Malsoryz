@@ -14,5 +14,6 @@
     protonup-qt
     gamemode
     lutris
+    protonplus
   ];
 }
