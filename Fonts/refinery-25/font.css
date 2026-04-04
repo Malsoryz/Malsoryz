@@ -1,0 +1,101 @@
+/* Hairline */
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-hairline.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-hairline-italic.woff2') format('woff2');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Light */
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-light-italic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Regular */
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-regular-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-medium-italic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Semibold */
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-semibold-italic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Refinery 25';
+    src: url('./refinery-25-bold-italic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
