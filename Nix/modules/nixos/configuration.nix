@@ -15,9 +15,31 @@
     "flakes"
   ];
 
+  # Kernel
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Plymouth
+  boot.plymouth = {
+    enable = true;
+    theme = "hexagon_2";
+    themePackages = with pkgs [
+      (adi1090x-plymouth-themes.override {
+        selected_themes = [ "hexagon_2" ];
+      })
+    ];
+  };
+
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.kernelParams = [
+    "quiet"
+    "udev.log_level=3"
+    "systemd.show_status=auto"
+  ];
 
   networking.hostName = "aru"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
