@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = with pkgs.gnomeExtensions; [
     clipboard-indicator
@@ -16,6 +16,7 @@
       name = "WhiteSur-dark";
       package = pkgs.whitesur-icon-theme;
     };
+    gtk4.theme = config.gtk.theme;
   };
 
   dconf.settings = {

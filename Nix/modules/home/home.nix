@@ -16,30 +16,41 @@ in
 
   home.username = "alternity";
   home.homeDirectory = "/home/alternity";
-  home.stateVersion = "25.11";
-  home.packages =
-    with pkgs;
-    [
-      antigravity
+  home.stateVersion = "26.05";
+  home.packages = with pkgs; [
+    antigravity
 
-      openssl
-      tree
-      curl
-      wget
-      fastfetch
-      unzip
-      eza
-      bat
+    openssl
+    tree
+    curl
+    wget
+    fastfetch
+    unzip
+    eza
+    bat
 
-      nodejs_24
+    nodejs_24
 
-      # formatter
-      nixfmt
+    (python3.withPackages (
+      ppkgs: with ppkgs; [
+        pip
+        numpy
+        pandas
+        matplotlib
+        scikit-learn
+      ]
+    ))
 
-      # Uma Gremlins
-      uma-gremlin
-    ]
-    ++ [ phpPackages ];
+    # formatter
+    nixfmt
+
+    # Uma Gremlins
+    uma-gremlin
+
+    php84
+    php84Packages.composer
+  ];
+  # ++ [ phpPackages ];
 
   home.shellAliases = {
     rebuild-system = "sudo nixos-rebuild switch --flake ${configurationPath}#aru";
@@ -116,7 +127,7 @@ in
   programs.onlyoffice.enable = true;
   programs.home-manager.enable = true;
   programs.fish.enable = true;
-  programs.claude-code.enable = true;
+  # programs.claude-code.enable = true;
 
   # Catppuccin Theme --------------------------------------- #
 

@@ -26,7 +26,7 @@
   boot.plymouth = {
     enable = true;
     theme = "hexagon_2";
-    themePackages = with pkgs [
+    themePackages = with pkgs; [
       (adi1090x-plymouth-themes.override {
         selected_themes = [ "hexagon_2" ];
       })
@@ -43,6 +43,10 @@
 
   networking.hostName = "aru"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  networking.hosts = {
+    "127.0.0.1" = [ "presence.org" ];
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -116,6 +120,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "nginx"
     ];
     packages = with pkgs; [
       #  thunderbird

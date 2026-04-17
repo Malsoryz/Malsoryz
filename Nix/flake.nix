@@ -4,43 +4,53 @@
   inputs = {
     # Main
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
+
     import-tree.url = "github:vic/import-tree";
 
     # Packages
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    catppuccin.url = "github:catppuccin/nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
 
     nix-phps = {
       url = "github:fossar/nix-phps";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+
     fossar-phps = {
       url = "path:./modules/flakes/fossar-phps";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
       inputs.nix-phps.follows = "nix-phps";
     };
 
     desktop-gremlin = {
       url = "github:iluvgirlswithglasses/linux-desktop-gremlin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+
     uma-gremlin = {
       url = "path:./modules/flakes/uma-gremlin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
       inputs.desktop-gremlin.follows = "desktop-gremlin";
     };
   };
 
   outputs =
     inputs:
-    let
-      lib = inputs.nixpkgs.lib;
-    in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
