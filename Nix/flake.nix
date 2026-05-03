@@ -8,7 +8,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -58,15 +58,17 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          (inputs.import-tree ./modules/nixos)
+          ./system/configuration.nix
+          (inputs.import-tree ./system/modules)
         ];
       };
 
       flake.homeConfigurations."alternity" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = inputs.nixpkgs-stable.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs; };
         modules = [
-          (inputs.import-tree ./modules/home)
+          ./home/home.nix
+          (inputs.import-tree ./home/modules)
           inputs.spicetify-nix.homeManagerModules.default
           inputs.catppuccin.homeModules.catppuccin
         ];

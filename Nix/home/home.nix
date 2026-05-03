@@ -16,7 +16,7 @@ in
 
   home.username = "alternity";
   home.homeDirectory = "/home/alternity";
-  home.stateVersion = "26.05";
+  home.stateVersion = "25.11";
   home.packages = with pkgs; [
     antigravity
 
@@ -31,6 +31,8 @@ in
 
     nodejs_24
 
+    # n8n
+
     (python3.withPackages (
       ppkgs: with ppkgs; [
         pip
@@ -38,8 +40,13 @@ in
         pandas
         matplotlib
         scikit-learn
+        pygobject3
+        pycairo
       ]
     ))
+
+    gtk3
+    gobject-introspection
 
     # formatter
     nixfmt
@@ -127,7 +134,10 @@ in
   programs.onlyoffice.enable = true;
   programs.home-manager.enable = true;
   programs.fish.enable = true;
-  # programs.claude-code.enable = true;
+  programs.claude-code = {
+    enable = true;
+    package = pkgs.claude-code;
+  };
 
   # Catppuccin Theme --------------------------------------- #
 

@@ -2,12 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+  ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      openldap = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.openldap;
+    })
   ];
 
   nix.settings.experimental-features = [
@@ -127,6 +139,8 @@
     ];
   };
 
+  programs.nix-ld.enable = true;
+
   # Fish Shell
   programs.fish.enable = true;
 
@@ -143,7 +157,16 @@
     #  wget
     docker-compose
     ctop
+
+    linuxConsoleTools
+    jstest-gtk
+    antimicrox
+    evtest
   ];
+
+  environment.variables = {
+    SDL_GAMECONTROLLERCONFIG = "03000000790000000600000010010000,DragonRise Generic,a:b0,b:b1,x:b2,y:b3,back:b8,start:b9,guide:b10,leftstick:b11,rightstick:b12,leftshoulder:b4,rightshoulder:b5,dpup:h0.1,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,leftx:a0,lefty:a1,rightx:a2,righty:a3";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -159,7 +182,10 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8000 ];
+  networking.firewall.allowedTCPPorts = [
+    8000
+    3000
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
