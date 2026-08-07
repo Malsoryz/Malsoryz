@@ -2,17 +2,14 @@
   description = "Main flake for nixos and home-manager configurations";
 
   inputs = {
-    # Main
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-
     flake-parts.url = "github:hercules-ci/flake-parts";
-
     import-tree.url = "github:vic/import-tree";
 
     # Packages
@@ -22,7 +19,7 @@
     };
 
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:catppuccin/nix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -37,16 +34,16 @@
       inputs.nix-phps.follows = "nix-phps";
     };
 
-    desktop-gremlin = {
-      url = "github:iluvgirlswithglasses/linux-desktop-gremlin";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
+    # desktop-gremlin = {
+    #   url = "github:iluvgirlswithglasses/linux-desktop-gremlin";
+    #   inputs.nixpkgs.follows = "nixpkgs-stable";
+    # };
 
-    uma-gremlin = {
-      url = "path:./modules/flakes/uma-gremlin";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-      inputs.desktop-gremlin.follows = "desktop-gremlin";
-    };
+    # uma-gremlin = {
+    #   url = "path:./modules/flakes/uma-gremlin";
+    #   inputs.nixpkgs.follows = "nixpkgs-stable";
+    #   inputs.desktop-gremlin.follows = "desktop-gremlin";
+    # };
   };
 
   outputs =
@@ -72,13 +69,6 @@
           inputs.spicetify-nix.homeManagerModules.default
           inputs.catppuccin.homeModules.catppuccin
         ];
-      };
-
-      flake.templates = {
-        laravel = {
-          path = ./modules/templates/laravel;
-          description = "Laravel development flake template";
-        };
       };
     };
 }

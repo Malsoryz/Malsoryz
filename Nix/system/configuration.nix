@@ -37,10 +37,10 @@
   # Plymouth
   boot.plymouth = {
     enable = true;
-    theme = "hexagon_2";
+    theme = "hexagon_dots";
     themePackages = with pkgs; [
       (adi1090x-plymouth-themes.override {
-        selected_themes = [ "hexagon_2" ];
+        selected_themes = [ "hexagon_dots" ];
       })
     ];
   };
@@ -185,6 +185,8 @@
   networking.firewall.allowedTCPPorts = [
     8000
     3000
+    80
+    443
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
@@ -196,6 +198,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 
 }

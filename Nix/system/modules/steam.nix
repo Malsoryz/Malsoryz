@@ -16,4 +16,9 @@
     lutris
     protonplus
   ];
+
+  # Controller
+
+  hardware.uinput.enable = true;
+  
 }

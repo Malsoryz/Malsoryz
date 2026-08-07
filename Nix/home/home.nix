@@ -2,21 +2,29 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 let
   # Change into current path
   configurationPath = "/home/alternity/dotfiles/Nix";
 
-  uma-gremlin = inputs.uma-gremlin.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  # uma-gremlin = inputs.uma-gremlin.packages.${pkgs.stdenv.hostPlatform.system}.default;
   phpPackages = inputs.fossar-phps.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+  unstablePkgs = import inputs.nixpkgs {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = {
+      allowUnfree = true;
+    };
+  };
 in
 {
   nixpkgs.config.allowUnfree = true;
 
   home.username = "alternity";
   home.homeDirectory = "/home/alternity";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   home.packages = with pkgs; [
     antigravity
 
@@ -45,6 +53,8 @@ in
       ]
     ))
 
+    uv
+
     gtk3
     gobject-introspection
 
@@ -52,11 +62,12 @@ in
     nixfmt
 
     # Uma Gremlins
-    uma-gremlin
+    # uma-gremlin
 
     php84
     php84Packages.composer
   ];
+  # ++ [ unstablePkgs.graphify ];
   # ++ [ phpPackages ];
 
   home.shellAliases = {
@@ -70,7 +81,7 @@ in
 
     ls = "${pkgs.eza}/bin/eza --icons";
     ll = "${pkgs.eza}/bin/eza -lah --icons";
-    cat = "${pkgs.bat}/bin/bat";
+    # cat = "${pkgs.bat}/bin/bat";
     pisan = "${pkgs.php84}/bin/php artisan";
     code = "${pkgs.antigravity}/bin/antigravity";
   };
@@ -93,16 +104,15 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      serverAliveInterval = 60;
-      serverAliveCountMax = 3;
-    };
-    matchBlocks = {
+    settings = {
+      "*" = {
+        ServerAliveInterval = 60;
+        ServerAliveCountMax = 3;
+      };
       "github.com" = {
-        host = "github.com";
-        user = "git";
-        forwardAgent = true;
-        identityFile = "~/.ssh/id_ed25519";
+        User = "git";
+        ForwardAgent = true;
+        IdentityFile = "~/.ssh/id_ed25519";
       };
     };
   };
@@ -129,14 +139,28 @@ in
     package = pkgs.google-chrome;
   };
 
-  programs.discord.enable = true;
-  programs.bun.enable = true;
+  programs.discord = {
+    enable = true;
+    package = unstablePkgs.discord;
+  };
+
+  programs.bun = {
+    enable = true;
+    package = unstablePkgs.bun;
+  };
+
+  programs.opencode = {
+    enable = true;
+    package = unstablePkgs.opencode;
+  };
+
   programs.onlyoffice.enable = true;
   programs.home-manager.enable = true;
-  programs.fish.enable = true;
-  programs.claude-code = {
+  programs.fish = {
     enable = true;
-    package = pkgs.claude-code;
+    shellInit = ''
+      fish_add_path $HOME/.local/bin
+    '';
   };
 
   # Catppuccin Theme --------------------------------------- #
