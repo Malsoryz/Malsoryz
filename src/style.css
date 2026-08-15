@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@property --hue {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 25;
+}
+
+body {
+  @apply bg-black w-full min-h-svh;
+
+  --accent-color: oklch(0.65 0.22 var(--hue));
+  --grid-color: color-mix(
+    in oklch,
+    oklch(0.65 0.22 var(--hue)),
+    transparent 75%
+  );
+
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 150px 150px;
+  background-position: center;
+
+  animation: color-cycle 12s ease-in-out infinite;
+
+  & .fullname-badge {
+    @apply bg-(--accent-color)/25 border border-(--accent-color)/50 text-sm;
+    color: color-mix(in oklch, var(--accent-color), white 35%);
+  }
+}
+
+.hero-section {
+  @apply min-h-svh max-w-7xl mx-auto flex items-center justify-center;
+}
+
+@keyframes color-cycle {
+  0%,
+  100% {
+    --hue: 25;
+  }
+  33.3% {
+    --hue: 90;
+  }
+  66.6% {
+    --hue: 145;
+  }
+}
