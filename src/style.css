@@ -32,18 +32,27 @@ body {
   background-position: center;
 
   animation: pulse-grid 3s infinite;
-
-  & .fullname-badge {
-    @apply bg-(--accent-color)/25 border border-(--accent-color)/75 text-sm backdrop-blur-lg;
-    color: color-mix(in oklch, var(--accent-color), white 35%);
-  }
 }
 
 .hero-section {
   @apply min-h-svh max-w-7xl mx-auto flex items-center justify-center;
 }
 
+.hero-container {
+  @apply p-4 flex justify-between items-center gap-8 w-full;
+}
+
+.hero-content {
+  @apply flex flex-2 flex-col justify-center gap-3 uppercase;
+}
+
+.fullname-badge {
+  @apply px-2 py-1 w-fit rounded-md bg-(--accent-color)/25 border border-(--accent-color)/75 text-sm backdrop-blur-lg;
+  color: color-mix(in oklch, var(--accent-color), white 35%);
+}
+
 .hero-branding {
+  @apply font-extrabold text-7xl text-white;
   background-image: linear-gradient(to bottom, white 50%, black 50%);
   background-size: 100% 4px;
   color: transparent;
@@ -55,6 +64,50 @@ body {
     0 0 calc(52px * var(--glow-opacity)) var(--accent-color);
 
   animation: pulse-glow 3s infinite;
+}
+
+.hero-headline {
+  @apply font-bold text-(--accent-color) text-5xl;
+}
+
+.hero-description {
+  @apply text-sm font-medium text-white w-xl normal-case leading-relaxed mt-4;
+}
+
+.hero-actions {
+  @apply flex items-center gap-3 mt-4;
+}
+
+.btn-cta {
+  @apply flex items-center gap-3 px-3 py-2 border border-(--accent-color)/75 rounded-md bg-black text-(--accent-color);
+}
+
+.btn-cta-text {
+  @apply font-bold;
+}
+
+.social-btn {
+  @apply bg-black border border-(--accent-color)/75 p-2 rounded-md;
+}
+
+.social-icon {
+  @apply w-6 h-6;
+}
+
+.hero-profile {
+  @apply relative;
+}
+
+.profile-img {
+  @apply max-w-md w-md rounded-full;
+}
+
+.profile-glow {
+  @apply max-w-md w-md rounded-full absolute top-0 left-0 -z-10 blur-lg transition-all duration-300;
+}
+
+.profile-img:hover ~ .profile-glow {
+  @apply blur-xl;
 }
 
 @keyframes pulse-grid {
@@ -76,3 +129,4 @@ body {
     --glow-opacity: 0.5;
   }
 }
+
