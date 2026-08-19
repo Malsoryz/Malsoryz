@@ -11,19 +11,21 @@
   <body>
     <section class="hero-section">
       <div class="p-4 flex justify-between items-center gap-8 w-full">
-        <div class="flex flex-2 flex-col justify-center gap-3 uppercase">
+        <div
+          class="hero-content flex flex-2 flex-col justify-center gap-3 uppercase"
+        >
           <div class="fullname-badge px-2 py-1 w-fit rounded-md">
             Muhammad Ikmal Al-Ansory
           </div>
           <h1
-            class="font-extrabold text-7xl text-white"
+            class="hero-branding font-extrabold text-7xl text-white"
             data-texts="Ikmal|Malsoryz|ALTERNTY"
             x-data="typewriter({ interval: 10000 })"
           >
             Hi! I'm
             <span x-text="text"></span>
           </h1>
-          <h2 class="font-bold text-(--accent-color) text-5xl">
+          <h2 class="hero-headline font-bold text-(--accent-color) text-5xl">
             I'm A Programmer
           </h2>
           <p
@@ -36,7 +38,7 @@
           </p>
           <div class="flex items-center gap-3 mt-4">
             <div
-              class="flex items-center gap-3 px-3 py-2 border border-(--accent-color)/30 rounded-md bg-black text-(--accent-color)"
+              class="flex items-center gap-3 px-3 py-2 border border-(--accent-color)/75 rounded-md bg-black text-(--accent-color)"
             >
               <span class="font-bold">Get in touch</span>
 
@@ -60,7 +62,7 @@
             <!-- Github Button -->
             <a>
               <div
-                class="bg-black border border-(--accent-color)/30 p-2 rounded-md"
+                class="bg-black border border-(--accent-color)/75 p-2 rounded-md"
               >
                 <svg
                   class="w-6 h-6"
@@ -82,7 +84,7 @@
             <!-- Instagram Button -->
             <a>
               <div
-                class="bg-black border border-(--accent-color)/30 p-2 rounded-md"
+                class="bg-black border border-(--accent-color)/75 p-2 rounded-md"
                 x-on:click="alert('Instagram link coming soon...')"
               >
                 <svg

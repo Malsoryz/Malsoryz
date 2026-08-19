@@ -1,19 +1,28 @@
 @import "tailwindcss";
 
-@property --hue {
+@property --grid-opacity {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
+@property --glow-opacity {
   syntax: "<number>";
   inherits: false;
-  initial-value: 25;
+  initial-value: 1;
+}
+
+:root {
+  --accent-color: oklab(37.667% 0.1349 0.07547);
 }
 
 body {
   @apply bg-black w-full min-h-svh;
 
-  --accent-color: oklch(0.65 0.22 var(--hue));
   --grid-color: color-mix(
     in oklch,
-    oklch(0.65 0.22 var(--hue)),
-    transparent 75%
+    var(--accent-color) var(--grid-opacity),
+    black
   );
 
   background-image:
@@ -22,10 +31,10 @@ body {
   background-size: 150px 150px;
   background-position: center;
 
-  animation: color-cycle 12s ease-in-out infinite;
+  animation: pulse-grid 3s infinite;
 
   & .fullname-badge {
-    @apply bg-(--accent-color)/25 border border-(--accent-color)/50 text-sm;
+    @apply bg-(--accent-color)/25 border border-(--accent-color)/75 text-sm backdrop-blur-lg;
     color: color-mix(in oklch, var(--accent-color), white 35%);
   }
 }
@@ -34,15 +43,36 @@ body {
   @apply min-h-svh max-w-7xl mx-auto flex items-center justify-center;
 }
 
-@keyframes color-cycle {
+.hero-branding {
+  background-image: linear-gradient(to bottom, white 50%, black 50%);
+  background-size: 100% 4px;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow:
+    0 0 calc(7px * var(--glow-opacity)) #fff,
+    0 0 calc(48px * var(--glow-opacity)) var(--accent-color),
+    0 0 calc(52px * var(--glow-opacity)) var(--accent-color);
+
+  animation: pulse-glow 3s infinite;
+}
+
+@keyframes pulse-grid {
   0%,
   100% {
-    --hue: 25;
+    --grid-opacity: 75%;
   }
-  33.3% {
-    --hue: 90;
+  50% {
+    --grid-opacity: 55%;
   }
-  66.6% {
-    --hue: 145;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    --glow-opacity: 1;
+  }
+  50% {
+    --glow-opacity: 0.5;
   }
 }
