@@ -5,40 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>Alternity Portofolio</title>
-    <script type="module" crossorigin src="/assets/index-C_HNMIRy.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Xwr1LHZ1.css">
+    <script type="module" crossorigin src="/assets/index-Cts47zoG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CZy89zmn.css">
   </head>
   <body>
     <section class="hero-section">
-      <div class="p-4 flex justify-between items-center gap-8 w-full">
-        <div class="flex flex-2 flex-col justify-center gap-3 uppercase">
-          <div class="fullname-badge px-2 py-1 w-fit rounded-md">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="fullname-badge">
             Muhammad Ikmal Al-Ansory
           </div>
           <h1
-            class="font-extrabold text-7xl text-white"
+            class="hero-branding"
             data-texts="Ikmal|Malsoryz|ALTERNTY"
             x-data="typewriter({ interval: 10000 })"
           >
             Hi! I'm
             <span x-text="text"></span>
           </h1>
-          <h2 class="font-bold text-(--accent-color) text-5xl">
+          <h2 class="hero-headline">
             I'm A Programmer
           </h2>
-          <p
-            class="text-sm font-medium text-white w-xl normal-case leading-relaxed mt-4"
-          >
+          <p class="hero-description">
             "Simplicity is the soul of efficiency. A dollop of elegance here, a
             pinch of cleverness there, but mostly it is about doing the absolute
             minimum required to achieve the desired result, and no more. The
             best code is no code at all." — Jeff Atwood
           </p>
-          <div class="flex items-center gap-3 mt-4">
-            <div
-              class="flex items-center gap-3 px-3 py-2 border border-(--accent-color)/30 rounded-md bg-black text-(--accent-color)"
-            >
-              <span class="font-bold">Get in touch</span>
+          <div class="hero-actions">
+            <div class="btn-cta">
+              <span class="btn-cta-text">Get in touch</span>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,12 +54,10 @@
             </div>
 
             <!-- Github Button -->
-            <a>
-              <div
-                class="bg-black border border-(--accent-color)/30 p-2 rounded-md"
-              >
+            <a class="social-link">
+              <div class="social-btn">
                 <svg
-                  class="w-6 h-6"
+                  class="social-icon"
                   viewBox="0 0 1024 1024"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -80,13 +74,13 @@
             </a>
 
             <!-- Instagram Button -->
-            <a>
+            <a class="social-link">
               <div
-                class="bg-black border border-(--accent-color)/30 p-2 rounded-md"
+                class="social-btn"
                 x-on:click="alert('Instagram link coming soon...')"
               >
                 <svg
-                  class="w-6 h-6"
+                  class="social-icon"
                   xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
                   viewBox="0 0 264.583 264.583"
@@ -186,14 +180,14 @@
           </div>
         </div>
 
-        <div class="relative" data-type="profile-image">
+        <div class="hero-profile" data-type="profile-image">
           <img
-            class="peer/profile-img max-w-md w-md rounded-full"
+            class="profile-img"
             src="/alterue.jpeg"
             alt="alterue"
           />
           <img
-            class="max-w-md w-md rounded-full absolute top-0 left-0 -z-10 blur-lg peer-hover/profile-img:blur-xl transition-all duration-300"
+            class="profile-glow"
             src="/alterue.jpeg"
             alt="alterue"
           />
