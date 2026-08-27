@@ -31,8 +31,9 @@
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.limine.enable = true;
 
   # Plymouth
   boot.plymouth = {
@@ -66,6 +67,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
 
   # Set your time zone.
   time.timeZone = "Asia/Makassar";
@@ -139,6 +141,11 @@
     ];
   };
 
+  programs.localsend = {
+    enable = true;
+    openFirewall = true;
+  };
+
   programs.nix-ld.enable = true;
 
   # Fish Shell
@@ -162,6 +169,8 @@
     jstest-gtk
     antimicrox
     evtest
+
+    gparted
   ];
 
   environment.variables = {
