@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }:
 {
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -20,5 +22,4 @@
   # Controller
 
   hardware.uinput.enable = true;
-  
 }

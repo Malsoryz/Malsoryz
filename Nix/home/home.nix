@@ -10,7 +10,7 @@ let
   configurationPath = "/home/alternity/dotfiles/Nix";
 
   # uma-gremlin = inputs.uma-gremlin.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  phpPackages = inputs.fossar-phps.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  # phpPackages = inputs.fossar-phps.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   unstablePkgs = import inputs.nixpkgs {
     system = pkgs.stdenv.hostPlatform.system;
@@ -18,16 +18,30 @@ let
       allowUnfree = true;
     };
   };
+
+  #   alternityPkgs = inputs.alternity-packages.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   nixpkgs.config.allowUnfree = true;
+
+  fonts.fontconfig.enable = true;
 
   home.username = "alternity";
   home.homeDirectory = "/home/alternity";
   home.stateVersion = "26.05";
   home.packages = with pkgs; [
+    # Apps
     antigravity
     qbittorrent
+    obsidian
+    vlc
+
+    # Cosmic Apps
+    # forecast
+    # cosmic-ext-applet-caffeine
+    # cosmic-ext-applet-privacy-indicator
+    # cosmic-ext-applet-sysinfo
+    # cosmic-ext-calculator
 
     openssl
     tree
@@ -42,7 +56,7 @@ in
 
     # n8n
 
-    (python3.withPackages (
+    (python314.withPackages (
       ppkgs: with ppkgs; [
         pip
         numpy
@@ -65,20 +79,23 @@ in
     # Uma Gremlins
     # uma-gremlin
 
-    php84
-    php84Packages.composer
+    php85
+    php85Packages.composer
   ];
+  # ++ (with alternityPkgs; [
+  #   cosmic-boards
+  # ]);
   # ++ [ unstablePkgs.graphify ];
   # ++ [ phpPackages ];
 
   home.shellAliases = {
-    rebuild-system = "sudo nixos-rebuild switch --flake ${configurationPath}#aru";
-    rebuild-system-boot = "sudo nixos-rebuild boot --flake ${configurationPath}#aru";
-    rebuild-system-test = "sudo nixos-rebuild test --flake ${configurationPath}#aru";
+    system-rebuild = "sudo nixos-rebuild switch --flake ${configurationPath}#aru";
+    system-boot-rebuild = "sudo nixos-rebuild boot --flake ${configurationPath}#aru";
+    system-test-rebuild = "sudo nixos-rebuild test --flake ${configurationPath}#aru";
 
-    rebuild-home = "home-manager switch --flake ${configurationPath}#alternity";
+    home-rebuild = "home-manager switch --flake ${configurationPath}#alternity";
 
-    rebuild-all = "sudo nixos-rebuild switch --flake ${configurationPath}#aru && home-manager switch --flake ${configurationPath}#alternity";
+    all-rebuild = "sudo nixos-rebuild switch --flake ${configurationPath}#aru && home-manager switch --flake ${configurationPath}#alternity";
 
     ls = "${pkgs.eza}/bin/eza --icons";
     ll = "${pkgs.eza}/bin/eza -lah --icons";
@@ -125,6 +142,7 @@ in
       package = pkgs.nerd-fonts.jetbrains-mono;
     };
     settings = {
+      background = "#120000";
       background_opacity = "0.75";
       window_padding_width = 12;
     };

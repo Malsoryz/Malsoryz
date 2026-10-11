@@ -8,6 +8,7 @@
     status-icons
     system-monitor
     caffeine
+    alphabetical-app-grid
   ];
 
   gtk = {
@@ -29,6 +30,7 @@
         "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
         "status-icons@gnome-shell-extensions.gcampax.github.com"
         "system-monitor@gnome-shell-extensions.gcampax.github.com"
+        "AlphabeticalAppGrid@stuarthayhurst"
       ];
     };
 
