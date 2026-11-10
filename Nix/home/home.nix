@@ -36,13 +36,6 @@ in
     obsidian
     vlc
 
-    # Cosmic Apps
-    # forecast
-    # cosmic-ext-applet-caffeine
-    # cosmic-ext-applet-privacy-indicator
-    # cosmic-ext-applet-sysinfo
-    # cosmic-ext-calculator
-
     openssl
     tree
     curl
@@ -60,18 +53,10 @@ in
       ppkgs: with ppkgs; [
         pip
         numpy
-        pandas
-        matplotlib
-        scikit-learn
-        pygobject3
-        pycairo
       ]
     ))
 
     uv
-
-    gtk3
-    gobject-introspection
 
     # formatter
     nixfmt
@@ -137,6 +122,7 @@ in
 
   programs.kitty = {
     enable = true;
+    package = unstablePkgs.kitty;
     font = {
       name = "JetBrainsMono Nerd Font";
       package = pkgs.nerd-fonts.jetbrains-mono;

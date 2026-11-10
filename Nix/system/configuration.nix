@@ -14,6 +14,10 @@
   ];
 
   nixpkgs = {
+    config.problems.handlers = {
+      "gtk+".broken = "warn";
+    };
+
     # Allow unfree packages
     config.allowUnfree = true;
     overlays = [
@@ -24,10 +28,13 @@
   };
 
   # Enabling experimental features
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings = {
+    max-jobs = "auto";
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alternity = {
@@ -50,13 +57,14 @@
     kernelPackages = pkgs.linuxPackages_cachyos; # Kernel
     initrd.kernelModules = [ "amdgpu" ];
 
-    # loader.systemd-boot.enable = true;
+    # loader.systemd-boot.enable = false;
     loader.efi.canTouchEfiVariables = true;
 
     # Bootloader
     loader.limine = {
-      enable = true;
+      enable = lib.mkForce true;
       maxGenerations = 10;
+      style.interface.branding = "ALTERNITY";
       extraEntries = ''
         /Windows
           protocol: efi
@@ -82,11 +90,14 @@
     };
 
     consoleLogLevel = 3;
-    initrd.verbose = false;
     kernelParams = [
       "quiet"
-      "udev.log_level=3"
-      "systemd.show_status=auto"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
     ];
   };
 
@@ -102,17 +113,14 @@
     firewall = {
       trustedInterfaces = [ "docker0" ];
       allowedTCPPorts = [
-        8000
-        3000
         80
         443
-
-        11434
       ];
     };
 
     # Enable networking
     networkmanager.enable = true;
+    networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
     networkmanager.wifi.powersave = false;
 
     # Configure network proxy if necessary
@@ -231,7 +239,7 @@
     lutris
     protonplus
 
-    koboldcpp
+    devenv
   ];
 
   # Environment Variables

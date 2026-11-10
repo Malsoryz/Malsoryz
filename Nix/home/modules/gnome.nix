@@ -1,4 +1,17 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+let
+  unstablePkgs = import inputs.nixpkgs {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = {
+      allowUnfree = true;
+    };
+  };
+in
 {
   home.packages = with pkgs.gnomeExtensions; [
     clipboard-indicator
@@ -42,7 +55,7 @@
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       name = "Terminal";
-      command = "${pkgs.kitty}/bin/kitty";
+      command = "${unstablePkgs.kitty}/bin/kitty";
       binding = "<Primary><Alt>t";
     };
 

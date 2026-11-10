@@ -25,28 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    # Uncomment this to activate craftapps options for nixos
-    #
-    # nix-craftapps = {
-    #   url = "github:olafkfreund/nix-craftapps";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # desktop-gremlin = {
-    #   url = "github:iluvgirlswithglasses/linux-desktop-gremlin";
-    #   inputs.nixpkgs.follows = "nixpkgs-stable";
-    # };
-
-    # uma-gremlin = {
-    #   url = "path:./modules/flakes/uma-gremlin";
-    #   inputs.nixpkgs.follows = "nixpkgs-stable";
-    #   inputs.desktop-gremlin.follows = "desktop-gremlin";
-    # };
-
-    # alternity-packages = {
-    #   url = "path:./packages";
-    #   inputs.nixpkgs.follows = "nixpkgs-stable";
-    # };
+    altpkgs = {
+      url = "path:./packages";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
 
   outputs =
@@ -61,8 +43,6 @@
           ./system/configuration.nix
           inputs.chaotic.nixosModules.default
 
-          # inputs.nix-craftapps.nixosModules.default # Uncomment this to activate options for nixos
-
           (inputs.import-tree.filter (
             path: !inputs.nixpkgs.lib.hasSuffix ".ignore.nix" path
           ) ./system/modules)
@@ -74,8 +54,6 @@
         extraSpecialArgs = { inherit inputs; };
         modules = [
           ./home/home.nix
-
-          # inputs.nix-craftapps.homeManagerModules.default # Uncomment this to activate options for home-manager
 
           inputs.spicetify-nix.homeManagerModules.default
           inputs.catppuccin.homeModules.catppuccin

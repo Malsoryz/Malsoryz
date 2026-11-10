@@ -12,11 +12,19 @@
       pkgs = import nixpkgs {
         inherit system;
       };
+
+      alt-assets = pkgs.callPackage ./assets/default.nix { };
+      alt-assets-path = "${alt-assets}/share/alt-assets";
     in
     {
       packages.${system} = {
-        default = {
-          cosmic-boards = pkgs.callPackage ./cosmic-boards/package.nix { };
+        inherit alt-assets;
+        default = alt-assets;
+      };
+
+      alt-assets = {
+        wallpapers = {
+          "francesco-ungaro" = "${alt-assets-path}/wallpapers/francesco-ungaro.jpg";
         };
       };
     };
